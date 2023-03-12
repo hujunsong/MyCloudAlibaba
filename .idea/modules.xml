@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MyCloudAlibaba.iml" filepath="$PROJECT_DIR$/.idea/MyCloudAlibaba.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrderCenter/OrderCenter.iml" filepath="$PROJECT_DIR$/OrderCenter/OrderCenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrderCenter_8080/OrderCenter_8080.iml" filepath="$PROJECT_DIR$/OrderCenter_8080/OrderCenter_8080.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrderCenter_8081/OrderCenter_8081.iml" filepath="$PROJECT_DIR$/OrderCenter_8081/OrderCenter_8081.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShopGateway_6060/ShopGateway_6060.iml" filepath="$PROJECT_DIR$/ShopGateway_6060/ShopGateway_6060.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockCenter_7080/StockCenter_7080.iml" filepath="$PROJECT_DIR$/StockCenter_7080/StockCenter_7080.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockCenter_7081/StockCenter_7081.iml" filepath="$PROJECT_DIR$/StockCenter_7081/StockCenter_7081.iml" />
+    </modules>
+  </component>
+</project>

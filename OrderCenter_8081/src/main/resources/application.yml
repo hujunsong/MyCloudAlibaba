@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: OrderCenter
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        service: OrderCenter
+feign:
+  client:
+    config:
+      default:
+        #连接超时时间
+        connectTimeout: 2000
+        #数据读取超时是时间
+        readTimeout: 5000
