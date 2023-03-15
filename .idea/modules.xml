@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/OrderCenter_8080/OrderCenter_8080.iml" filepath="$PROJECT_DIR$/OrderCenter_8080/OrderCenter_8080.iml" />
       <module fileurl="file://$PROJECT_DIR$/OrderCenter_8081/OrderCenter_8081.iml" filepath="$PROJECT_DIR$/OrderCenter_8081/OrderCenter_8081.iml" />
       <module fileurl="file://$PROJECT_DIR$/ShopGateway_6060/ShopGateway_6060.iml" filepath="$PROJECT_DIR$/ShopGateway_6060/ShopGateway_6060.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShopGateway_6061/ShopGateway_6061.iml" filepath="$PROJECT_DIR$/ShopGateway_6061/ShopGateway_6061.iml" />
       <module fileurl="file://$PROJECT_DIR$/StockCenter_7080/StockCenter_7080.iml" filepath="$PROJECT_DIR$/StockCenter_7080/StockCenter_7080.iml" />
       <module fileurl="file://$PROJECT_DIR$/StockCenter_7081/StockCenter_7081.iml" filepath="$PROJECT_DIR$/StockCenter_7081/StockCenter_7081.iml" />
     </modules>
