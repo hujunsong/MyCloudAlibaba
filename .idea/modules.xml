@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AccountCenter_5050/AccountCenter_5050.iml" filepath="$PROJECT_DIR$/AccountCenter_5050/AccountCenter_5050.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AccountCenter_5051/AccountCenter_5051.iml" filepath="$PROJECT_DIR$/AccountCenter_5051/AccountCenter_5051.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MyCloudAlibaba.iml" filepath="$PROJECT_DIR$/.idea/MyCloudAlibaba.iml" />
-      <module fileurl="file://$PROJECT_DIR$/OrderCenter/OrderCenter.iml" filepath="$PROJECT_DIR$/OrderCenter/OrderCenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/OrderCenter_8080/OrderCenter_8080.iml" filepath="$PROJECT_DIR$/OrderCenter_8080/OrderCenter_8080.iml" />
       <module fileurl="file://$PROJECT_DIR$/OrderCenter_8081/OrderCenter_8081.iml" filepath="$PROJECT_DIR$/OrderCenter_8081/OrderCenter_8081.iml" />
       <module fileurl="file://$PROJECT_DIR$/ShopGateway_6060/ShopGateway_6060.iml" filepath="$PROJECT_DIR$/ShopGateway_6060/ShopGateway_6060.iml" />

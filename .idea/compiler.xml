@@ -8,35 +8,34 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ShopGateway_6060" />
+        <module name="ShopGateway_6061" />
         <module name="OrderCenter_8081" />
         <module name="OrderCenter_8080" />
-        <module name="ShopGateway_6061" />
-        <module name="OrderCenter" />
         <module name="StockCenter_7081" />
         <module name="StockCenter_7080" />
+        <module name="AccountCenter_5050" />
+        <module name="AccountCenter_5051" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="OrderCenter" target="1.8" />
+      <module name="AccountCenter_5050" target="1.8" />
+      <module name="AccountCenter_5051" target="1.8" />
       <module name="OrderCenter_8080" target="1.8" />
       <module name="OrderCenter_8081" target="1.8" />
       <module name="ShopGateway_6060" target="1.8" />
       <module name="ShopGateway_6061" target="1.8" />
-      <module name="StockCenter" target="1.8" />
-      <module name="StockCenter (1)" target="1.6" />
       <module name="StockCenter_7080" target="1.8" />
       <module name="StockCenter_7081" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="OrderCenter" options="-parameters" />
+      <module name="AccountCenter_5050" options="-parameters" />
+      <module name="AccountCenter_5051" options="-parameters" />
       <module name="OrderCenter_8080" options="-parameters" />
       <module name="OrderCenter_8081" options="-parameters" />
       <module name="ShopGateway_6060" options="-parameters" />
       <module name="ShopGateway_6061" options="-parameters" />
-      <module name="StockCenter" options="-parameters" />
-      <module name="StockCenter (1)" options="-parameters" />
       <module name="StockCenter_7080" options="-parameters" />
       <module name="StockCenter_7081" options="-parameters" />
     </option>
