@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seven.account.dao.ShopAccountDao">
+
+    <resultMap type="com.seven.account.entity.ShopAccountEntity" id="ShopAccountMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="userNo" column="user_no" jdbcType="VARCHAR"/>
+        <result property="amountRemain" column="amount_remain" jdbcType="NUMERIC"/>
+        <result property="amountAvailable" column="amount_available" jdbcType="NUMERIC"/>
+        <result property="amountLock" column="amount_lock" jdbcType="NUMERIC"/>
+        <result property="flag" column="flag" jdbcType="INTEGER"/>
+        <result property="dateCreate" column="date_create" jdbcType="TIMESTAMP"/>
+        <result property="dateUpdate" column="date_update" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="base_column">
+        id
+        ,
+        user_no,
+        amount_remain,
+        amount_available,
+        amount_lock,
+        flag,
+        date_create,
+        date_update,
+        creator,
+        updater
+    </sql>
+
+    <insert id="createAccount">
+        insert into shop_account(id,user_no)
+        value (#{id},#{userNo})
+    </insert>
+
+    <!--查询单个-->
+    <select id="queryByUserNo" resultMap="ShopAccountMap">
+        select
+        <include refid="base_column"/>
+        from shop_account
+        where user_no = #{userNo}
+    </select>
+
+    <!-- 增加金额 -->
+    <update id="addAmount" parameterType="map">
+        update shop_account
+        set amount_available = amount_available + ${amountOpt},
+            amount_remain    = amount_remain + ${amountOpt}
+        where user_no = ${userNo}
+    </update>
+
+    <!-- 冻结金额 -->
+    <update id="lockAmount" parameterType="map">
+        update shop_account
+        set amount_available = amount_available - ${amountOpt},
+            amount_lock      = amount_lock + ${amountOpt}
+        where user_no = ${userNo}
+          and amount_available > ${amountOpt}
+    </update>
+
+    <!-- 解冻金额 -->
+    <update id="unlockAmount" parameterType="map">
+        update shop_account
+        set amount_available = amount_available + ${amountOpt},
+            amount_lock      = amount_lock - ${amountOpt}
+        where user_no = ${userNo}
+          and amount_lock > ${amountOpt}
+    </update>
+
+    <!-- 减少金额 -->
+    <update id="reduceAmount" parameterType="map">
+        update shop_account
+        set amount_remain = amount_remain - ${amountOpt},
+            amount_lock   = amount_lock - ${amountOpt}
+        where user_no = ${userNo}
+          and amount_lock > ${amountOpt}
+    </update>
+</mapper>

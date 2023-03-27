@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seven.account.dao.ShopAccountDetailDao">
+
+    <resultMap type="com.seven.account.entity.ShopAccountDetailEntity" id="ShopAccountDetailMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="userNo" column="user_no" jdbcType="VARCHAR"/>
+        <result property="amountOpt" column="amount_opt" jdbcType="NUMERIC"/>
+        <result property="optType" column="opt_type" jdbcType="VARCHAR"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+        <result property="dateCreate" column="date_create" jdbcType="TIMESTAMP"/>
+        <result property="dateUpdate" column="date_update" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="base_column">
+        id
+        ,
+       user_no,
+       amount_opt,
+       opt_type,
+       order_no,
+       date_create,
+       date_update,
+       creator,
+       updater
+    </sql>
+
+    <!--查询单个-->
+    <select id="queryByUserNo" resultMap="ShopAccountDetailMap">
+        select
+        <include refid="base_column"/>
+        from shop_account_detail
+        where user_no = #{userNo}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryByOrderNo" resultMap="ShopAccountDetailMap">
+        select
+        <include refid="base_column"/>
+        from shop_account_detail
+        where order_no = #{orderNo}
+    </select>
+
+    <insert id="insertAccountDetail" parameterType="com.seven.account.entity.ShopAccountDetailEntity">
+        insert into shop_account_detail
+        (id,
+         user_no,
+         amount_opt,
+         opt_type,
+         order_no,
+         date_create,
+         date_update)
+        values (#{id},
+                #{userNo},
+                #{amountOpt},
+                #{optType},
+                #{orderNo},
+                sysdate(),
+                sysdate())
+    </insert>
+
+</mapper>
+

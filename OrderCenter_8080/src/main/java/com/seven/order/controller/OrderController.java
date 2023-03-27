@@ -28,7 +28,7 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping("/order/apply")
-    public String applyOrder() {
-        return stockInterface.lockStock();
+    public String applyOrder(String skuNo,int nums) {
+        return stockInterface.lockStock(skuNo,nums);
     }
 }
