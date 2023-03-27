@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AccountCenter_5050/AccountCenter_5050.iml" filepath="$PROJECT_DIR$/AccountCenter_5050/AccountCenter_5050.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShopGateway_6060/5500_ShopGateway.iml" filepath="$PROJECT_DIR$/ShopGateway_6060/5500_ShopGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AccountCenter_5050/5600_AccountCenter.iml" filepath="$PROJECT_DIR$/AccountCenter_5050/5600_AccountCenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrderCenter_8080/5700_OrderCenter.iml" filepath="$PROJECT_DIR$/OrderCenter_8080/5700_OrderCenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockCenter_7080/5800_StockCenter.iml" filepath="$PROJECT_DIR$/StockCenter_7080/5800_StockCenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MyCloudAlibaba.iml" filepath="$PROJECT_DIR$/.idea/MyCloudAlibaba.iml" />
-      <module fileurl="file://$PROJECT_DIR$/OrderCenter_8080/OrderCenter_8080.iml" filepath="$PROJECT_DIR$/OrderCenter_8080/OrderCenter_8080.iml" />
       <module fileurl="file://$PROJECT_DIR$/SaraUtils/SaraUtils.iml" filepath="$PROJECT_DIR$/SaraUtils/SaraUtils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ShopGateway_6060/ShopGateway_6060.iml" filepath="$PROJECT_DIR$/ShopGateway_6060/ShopGateway_6060.iml" />
-      <module fileurl="file://$PROJECT_DIR$/StockCenter_7080/StockCenter_7080.iml" filepath="$PROJECT_DIR$/StockCenter_7080/StockCenter_7080.iml" />
     </modules>
   </component>
 </project>

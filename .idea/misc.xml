@@ -8,6 +8,10 @@
         <option value="$PROJECT_DIR$/ShopGateway_6060/pom.xml" />
         <option value="$PROJECT_DIR$/AccountCenter_5050/pom.xml" />
         <option value="$PROJECT_DIR$/SaraUtils/pom.xml" />
+        <option value="$PROJECT_DIR$/5500_ShopGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/5600_AccountCenter/pom.xml" />
+        <option value="$PROJECT_DIR$/5700_OrderCenter/pom.xml" />
+        <option value="$PROJECT_DIR$/5800_StockCenter/pom.xml" />
       </list>
     </option>
   </component>

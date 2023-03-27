@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/AccountCenter_5050/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/AccountCenter_5050/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/5500_ShopGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/5500_ShopGateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/5600_AccountCenter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/5600_AccountCenter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/5700_OrderCenter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/5700_OrderCenter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/5800_StockCenter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/5800_StockCenter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AccountCenter_5051/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AccountCenter_5051/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/OrderCenter_8080/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/OrderCenter_8080/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/OrderCenter_8081/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/OrderCenter_8081/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SaraUtils/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ShopGateway_6060/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ShopGateway_6060/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ShopGateway_6061/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ShopGateway_6061/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/StockCenter_7080/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/StockCenter_7080/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/StockCenter_7081/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/StockCenter_7081/src/main/resources" charset="UTF-8" />
   </component>
