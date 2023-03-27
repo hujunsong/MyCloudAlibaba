@@ -1,4 +1,4 @@
-package com.seven.account.utils;
+package com.sara.utils;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.cloud.nacos.NacosServiceManager;

@@ -4,13 +4,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/OrderCenter_8080/pom.xml" />
-        <option value="$PROJECT_DIR$/OrderCenter_8081/pom.xml" />
         <option value="$PROJECT_DIR$/StockCenter_7080/pom.xml" />
-        <option value="$PROJECT_DIR$/StockCenter_7081/pom.xml" />
         <option value="$PROJECT_DIR$/ShopGateway_6060/pom.xml" />
-        <option value="$PROJECT_DIR$/ShopGateway_6061/pom.xml" />
-        <option value="$PROJECT_DIR$/AccountCenter_5051/pom.xml" />
         <option value="$PROJECT_DIR$/AccountCenter_5050/pom.xml" />
+        <option value="$PROJECT_DIR$/SaraUtils/pom.xml" />
       </list>
     </option>
   </component>

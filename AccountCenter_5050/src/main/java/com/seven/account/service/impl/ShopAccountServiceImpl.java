@@ -1,11 +1,11 @@
 package com.seven.account.service.impl;
 
+import com.sara.utils.SnowflakeIdGenerator;
 import com.seven.account.dao.ShopAccountDao;
 import com.seven.account.dao.ShopAccountDetailDao;
 import com.seven.account.entity.ShopAccountDetailEntity;
 import com.seven.account.entity.ShopAccountEntity;
 import com.seven.account.service.ShopAccountService;
-import com.seven.account.utils.SnowflakeIdGenerator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

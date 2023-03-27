@@ -8,13 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ShopGateway_6060" />
-        <module name="ShopGateway_6061" />
-        <module name="OrderCenter_8081" />
         <module name="OrderCenter_8080" />
-        <module name="StockCenter_7081" />
         <module name="StockCenter_7080" />
         <module name="AccountCenter_5050" />
-        <module name="AccountCenter_5051" />
+        <module name="SaraUtils" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +19,7 @@
       <module name="AccountCenter_5051" target="1.8" />
       <module name="OrderCenter_8080" target="1.8" />
       <module name="OrderCenter_8081" target="1.8" />
+      <module name="SaraUtils" target="8" />
       <module name="ShopGateway_6060" target="1.8" />
       <module name="ShopGateway_6061" target="1.8" />
       <module name="StockCenter_7080" target="1.8" />
@@ -34,6 +32,7 @@
       <module name="AccountCenter_5051" options="-parameters" />
       <module name="OrderCenter_8080" options="-parameters" />
       <module name="OrderCenter_8081" options="-parameters" />
+      <module name="SaraUtils" options="-parameters" />
       <module name="ShopGateway_6060" options="-parameters" />
       <module name="ShopGateway_6061" options="-parameters" />
       <module name="StockCenter_7080" options="-parameters" />
