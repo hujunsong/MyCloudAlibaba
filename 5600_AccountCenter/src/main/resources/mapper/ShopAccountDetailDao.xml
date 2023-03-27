@@ -48,16 +48,12 @@
          user_no,
          amount_opt,
          opt_type,
-         order_no,
-         date_create,
-         date_update)
+         order_no)
         values (#{id},
                 #{userNo},
                 #{amountOpt},
                 #{optType},
-                #{orderNo},
-                sysdate(),
-                sysdate())
+                #{orderNo})
     </insert>
 
 </mapper>

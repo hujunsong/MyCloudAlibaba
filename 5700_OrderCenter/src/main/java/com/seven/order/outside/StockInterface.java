@@ -16,5 +16,5 @@ public interface StockInterface {
      * @return
      */
     @PostMapping("/stock/lock")
-    String lockStock(String skuNo,int num);
+    String lockStock(String skuNo,Integer num);
 }

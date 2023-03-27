@@ -22,11 +22,11 @@ public interface ShopAccountService {
      */
     ShopAccountEntity queryByUserNo(String userNo);
 
-    int addAmount(String userNo, BigDecimal amountOpt, String orderNo);
+    ShopAccountEntity addAmount(String userNo, BigDecimal amountOpt, String orderNo);
 
-    int lockAmount(String userNo, BigDecimal amountOpt, String orderNo);
+    ShopAccountEntity lockAmount(String userNo, BigDecimal amountOpt, String orderNo);
 
-    int unlockAmount(String userNo, BigDecimal amountOpt, String orderNo);
+    ShopAccountEntity unlockAmount(String userNo, BigDecimal amountOpt, String orderNo);
 
-    int reduceAmount(String userNo, BigDecimal amountOpt, String orderNo);
+    ShopAccountEntity reduceAmount(String userNo, BigDecimal amountOpt, String orderNo);
 }

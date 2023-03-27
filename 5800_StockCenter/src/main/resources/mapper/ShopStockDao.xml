@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seven.stock.dao.ShopStockDao">
+
+    <resultMap type="com.seven.stock.entity.ShopStockEntity" id="ShopStockMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="skuNo" column="sku_no" jdbcType="VARCHAR"/>
+        <result property="stockTotal" column="stock_total" jdbcType="INTEGER"/>
+        <result property="stockLock" column="stock_lock" jdbcType="INTEGER"/>
+        <result property="stockAvailable" column="stock_available" jdbcType="INTEGER"/>
+        <result property="flag" column="flag" jdbcType="INTEGER"/>
+        <result property="dateCreate" column="date_create" jdbcType="TIMESTAMP"/>
+        <result property="dateUpdate" column="date_update" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_colum">
+        id
+        ,
+       sku_no,
+       stock_total,
+       stock_lock,
+       stock_available,
+       flag,
+       date_create,
+       date_update,
+       creator,
+       updater
+    </sql>
+
+    <!--查询单个-->
+    <select id="queryBySkuNo" resultMap="ShopStockMap">
+        select
+        <include refid="Base_colum"/>
+        from shop_stock
+        where sku_no = #{skuNo}
+    </select>
+
+    <!--创建库存-->
+    <insert id="createStock">
+        insert into shop_stock(id, sku_no, stock_total, stock_lock, stock_available, flag)
+        values (#{id}, #{skuNo}, 0, 0, 0, 1)
+    </insert>
+
+    <!--添加库存-->
+    <update id="addStock">
+        update shop_stock
+        set stock_total     = stock_total + #{numOpt},
+            stock_available = stock_available + #{numOpt}
+        where sku_no = #{skuNo}
+    </update>
+
+    <!--冻结库存-->
+    <update id="lockStock">
+        update shop_stock
+        set stock_lock      = stock_lock + #{numOpt},
+            stock_available = stock_available - #{numOpt}
+        where sku_no = #{skuNo}
+          and stock_available > #{numOpt}
+    </update>
+
+    <!--解冻库存-->
+    <update id="unlockStock">
+        update shop_stock
+        set stock_lock      = stock_lock - #{numOpt},
+            stock_available = stock_available + #{numOpt}
+        where sku_no = #{skuNo}
+          and stock_lock > #{numOpt}
+    </update>
+
+    <!--减少库存-->
+    <update id="reduceStock">
+        update shop_stock
+        set stock_lock  = stock_lock - #{numOpt},
+            stock_total = stock_total - #{numOpt}
+        where sku_no = #{skuNo}
+          and stock_lock > #{numOpt}
+    </update>
+</mapper>
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seven.stock.dao.ShopStockDetailDao">
+
+    <resultMap type="com.seven.stock.entity.ShopStockDetailEntity" id="ShopStockDetailMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="skuNo" column="sku_no" jdbcType="VARCHAR"/>
+        <result property="numOpt" column="num_opt" jdbcType="INTEGER"/>
+        <result property="optType" column="opt_type" jdbcType="VARCHAR"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+        <result property="dateCreate" column="date_create" jdbcType="TIMESTAMP"/>
+        <result property="dateUpdate" column="date_update" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_column">
+        id
+        ,
+        sku_no,
+        num_opt,
+        opt_type,
+        order_no,
+        date_create,
+        date_update,
+        creator,
+        updater
+    </sql>
+
+    <!--查询单个-->
+    <select id="queryBySkuNo" resultMap="ShopStockDetailMap">
+        select
+        <include refid="Base_column"/>
+        from shop_stock_detail
+        where sku_no = #{skuNo}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="addStockDetail" keyProperty="id" useGeneratedKeys="true">
+        insert into shop_stock_detail(id, sku_no, num_opt, opt_type, order_no)
+        values (#{id}, #{skuNo}, #{numOpt}, #{optType}, #{orderNo})
+    </insert>
+</mapper>
+

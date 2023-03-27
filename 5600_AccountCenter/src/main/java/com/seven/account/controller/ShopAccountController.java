@@ -3,7 +3,6 @@ package com.seven.account.controller;
 import com.seven.account.entity.ShopAccountEntity;
 import com.seven.account.service.ShopAccountService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,10 +10,7 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 /**
- * 账户表(ShopAccount)表控制层
- *
- * @author makejava
- * @since 2023-03-26 08:22:28
+ * 账户接口
  */
 @RestController
 public class ShopAccountController {
@@ -25,17 +21,13 @@ public class ShopAccountController {
     /**
      * 创建账号
      *
-     * @param userNo  用户号
+     * @param userNo 用户号
      * @return OK
      */
     @ResponseBody
     @PostMapping("/account/create")
-    public String createAccount(String userNo) {
-        ShopAccountEntity shopAccountEntity =  shopAccountService.createAccount(userNo);
-        if(shopAccountEntity == null || shopAccountEntity.getFlag() == 0){
-            return "Fail";
-        }
-        return "OK";
+    public ShopAccountEntity createAccount(String userNo) {
+        return shopAccountService.createAccount(userNo);
     }
 
 
@@ -49,12 +41,8 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/add")
-    public String addAmount(String userNo, BigDecimal amount, String orderNo) {
-        int result =  shopAccountService.addAmount(userNo,amount,orderNo);
-        if(result == 1){
-            return "OK";
-        }
-        return "FAIL";
+    public ShopAccountEntity addAmount(String userNo, BigDecimal amount, String orderNo) {
+        return shopAccountService.addAmount(userNo, amount, orderNo);
     }
 
     /**
@@ -67,12 +55,8 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/lock")
-    public String lockAmount(String userNo, BigDecimal amount, String orderNo) {
-        int result =  shopAccountService.lockAmount(userNo,amount,orderNo);
-        if(result == 1){
-            return "OK";
-        }
-        return "FAIL";
+    public ShopAccountEntity lockAmount(String userNo, BigDecimal amount, String orderNo) {
+        return shopAccountService.lockAmount(userNo, amount, orderNo);
     }
 
     /**
@@ -85,12 +69,8 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/unlock")
-    public String unlockAmount(String userNo, BigDecimal amount, String orderNo) {
-        int result =  shopAccountService.unlockAmount(userNo,amount,orderNo);
-        if(result == 1){
-            return "OK";
-        }
-        return "FAIL";
+    public ShopAccountEntity unlockAmount(String userNo, BigDecimal amount, String orderNo) {
+        return shopAccountService.unlockAmount(userNo, amount, orderNo);
     }
 
     /**
@@ -103,12 +83,7 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/reduce")
-    public String reduceAmount(String userNo, BigDecimal amount, String orderNo) {
-        int result =  shopAccountService.reduceAmount(userNo,amount,orderNo);
-        if(result == 1){
-            return "OK";
-        }
-        return "FAIL";
+    public ShopAccountEntity reduceAmount(String userNo, BigDecimal amount, String orderNo) {
+        return shopAccountService.reduceAmount(userNo, amount, orderNo);
     }
 }
-
