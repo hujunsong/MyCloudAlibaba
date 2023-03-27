@@ -1,4 +1,4 @@
-package com.sara.utils;
+package com.sara.utils.snowflake.nacos;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.cloud.nacos.NacosServiceManager;

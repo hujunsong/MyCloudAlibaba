@@ -1,4 +1,4 @@
-package com.sara.utils;
+package com.sara.utils.snowflake.nacos;
 
 import java.util.concurrent.*;
 

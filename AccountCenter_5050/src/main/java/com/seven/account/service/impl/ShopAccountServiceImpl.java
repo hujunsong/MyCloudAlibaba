@@ -1,6 +1,6 @@
 package com.seven.account.service.impl;
 
-import com.sara.utils.SnowflakeIdGenerator;
+import com.sara.utils.snowflake.nacos.SnowflakeIdGenerator;
 import com.seven.account.dao.ShopAccountDao;
 import com.seven.account.dao.ShopAccountDetailDao;
 import com.seven.account.entity.ShopAccountDetailEntity;
