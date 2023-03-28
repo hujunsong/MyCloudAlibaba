@@ -19,7 +19,7 @@ public interface ShopStockDao {
      */
     ShopStockEntity queryBySkuNo(@Param("skuNo") String skuNo);
 
-    int createStock(@Param("id") Long id, @Param("skuNo") String skuNo);
+    int createStock(@Param("id") Long id, @Param("stockNo") String stockNo, @Param("skuNo") String skuNo);
 
     int addStock(@Param("skuNo") String skuNo, @Param("numOpt") Integer numOpt);
 

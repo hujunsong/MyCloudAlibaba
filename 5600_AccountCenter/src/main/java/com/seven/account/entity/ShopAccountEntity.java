@@ -16,6 +16,10 @@ public class ShopAccountEntity implements Serializable {
      */
     private Long id;
     /**
+     * 账户号
+     */
+    private String accountNo;
+    /**
      * 用户号
      */
     private String userNo;
@@ -59,6 +63,14 @@ public class ShopAccountEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
     }
 
     public String getUserNo() {

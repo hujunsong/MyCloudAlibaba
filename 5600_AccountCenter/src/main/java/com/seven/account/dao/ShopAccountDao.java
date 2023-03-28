@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  */
 public interface ShopAccountDao {
 
-    int createAccount(@Param("id") Long id, @Param("userNo") String userNo);
+    int createAccount(@Param("id") Long id, @Param("accountNo") String accountNo, @Param("userNo") String userNo);
 
     /**
      * 通过ID查询单条数据

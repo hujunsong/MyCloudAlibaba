@@ -6,6 +6,8 @@ import com.seven.account.dao.ShopAccountDetailDao;
 import com.seven.account.entity.ShopAccountDetailEntity;
 import com.seven.account.entity.ShopAccountEntity;
 import com.seven.account.service.ShopAccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,8 @@ import static com.seven.account.constant.ShopAccountDetailOptTypeEnum.*;
 @Service("shopAccountService")
 public class ShopAccountServiceImpl implements ShopAccountService {
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Resource
     private ShopAccountDao shopAccountDao;
 
@@ -33,7 +37,9 @@ public class ShopAccountServiceImpl implements ShopAccountService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public ShopAccountEntity createAccount(String userNo) {
-        shopAccountDao.createAccount(SnowflakeIdGenerator.nextId(), userNo);
+        Long id = SnowflakeIdGenerator.nextId();
+        String accountNo = "AC" + id;
+        shopAccountDao.createAccount(id, accountNo, userNo);
         return shopAccountDao.queryByUserNo(userNo);
     }
 
@@ -67,7 +73,11 @@ public class ShopAccountServiceImpl implements ShopAccountService {
         int accountResult = shopAccountDao.addAmount(userNo, amountOpt);
         if (accountResult == 1) {
             ShopAccountDetailEntity shopAccountDetail = new ShopAccountDetailEntity();
-            shopAccountDetail.setId(SnowflakeIdGenerator.nextId());
+            Long id = SnowflakeIdGenerator.nextId();
+            String accountDetailNo = "ACD" + id;
+            shopAccountDetail.setId(id);
+            shopAccountDetail.setAccountDetailNo(accountDetailNo);
+            shopAccountDetail.setAccountNo(shopAccountEntity.getAccountNo());
             shopAccountDetail.setUserNo(userNo);
             shopAccountDetail.setAmountOpt(amountOpt);
             shopAccountDetail.setOptType(SHOP_ACCOUNT_DETAIL_OPT_TYPE_ENUM_ADD.getOptType());
@@ -96,7 +106,11 @@ public class ShopAccountServiceImpl implements ShopAccountService {
         int accountResult = shopAccountDao.lockAmount(userNo, amountOpt);
         if (accountResult == 1) {
             ShopAccountDetailEntity shopAccountDetail = new ShopAccountDetailEntity();
-            shopAccountDetail.setId(SnowflakeIdGenerator.nextId());
+            Long id = SnowflakeIdGenerator.nextId();
+            String accountDetailNo = "ACD" + id;
+            shopAccountDetail.setId(id);
+            shopAccountDetail.setAccountDetailNo(accountDetailNo);
+            shopAccountDetail.setAccountNo(shopAccountEntity.getAccountNo());
             shopAccountDetail.setUserNo(userNo);
             shopAccountDetail.setAmountOpt(amountOpt);
             shopAccountDetail.setOptType(SHOP_ACCOUNT_DETAIL_OPT_TYPE_ENUM_LOCK.getOptType());
@@ -125,7 +139,11 @@ public class ShopAccountServiceImpl implements ShopAccountService {
         int accountResult = shopAccountDao.unlockAmount(userNo, amountOpt);
         if (accountResult == 1) {
             ShopAccountDetailEntity shopAccountDetail = new ShopAccountDetailEntity();
-            shopAccountDetail.setId(SnowflakeIdGenerator.nextId());
+            Long id = SnowflakeIdGenerator.nextId();
+            String accountDetailNo = "ACD" + id;
+            shopAccountDetail.setId(id);
+            shopAccountDetail.setAccountDetailNo(accountDetailNo);
+            shopAccountDetail.setAccountNo(shopAccountEntity.getAccountNo());
             shopAccountDetail.setUserNo(userNo);
             shopAccountDetail.setAmountOpt(amountOpt);
             shopAccountDetail.setOptType(SHOP_ACCOUNT_DETAIL_OPT_TYPE_ENUM_UNLOCK.getOptType());
@@ -154,7 +172,11 @@ public class ShopAccountServiceImpl implements ShopAccountService {
         int accountResult = shopAccountDao.reduceAmount(userNo, amountOpt);
         if (accountResult == 1) {
             ShopAccountDetailEntity shopAccountDetail = new ShopAccountDetailEntity();
-            shopAccountDetail.setId(SnowflakeIdGenerator.nextId());
+            Long id = SnowflakeIdGenerator.nextId();
+            String accountDetailNo = "ACD" + id;
+            shopAccountDetail.setId(id);
+            shopAccountDetail.setAccountDetailNo(accountDetailNo);
+            shopAccountDetail.setAccountNo(shopAccountEntity.getAccountNo());
             shopAccountDetail.setUserNo(userNo);
             shopAccountDetail.setAmountOpt(amountOpt);
             shopAccountDetail.setOptType(SHOP_ACCOUNT_DETAIL_OPT_TYPE_ENUM_REDUCE.getOptType());

@@ -1,8 +1,8 @@
 package com.seven.account.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.io.Serializable;
 
 /**
  * 账户明细表(ShopAccountDetail)实体类
@@ -16,6 +16,14 @@ public class ShopAccountDetailEntity implements Serializable {
      * 主键
      */
     private Long id;
+    /**
+     * 账户明细编号
+     */
+    private String accountDetailNo;
+    /**
+     * 账户号
+     */
+    private String accountNo;
     /**
      * 用户号
      */
@@ -56,6 +64,22 @@ public class ShopAccountDetailEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAccountDetailNo() {
+        return accountDetailNo;
+    }
+
+    public void setAccountDetailNo(String accountDetailNo) {
+        this.accountDetailNo = accountDetailNo;
+    }
+
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
     }
 
     public String getUserNo() {

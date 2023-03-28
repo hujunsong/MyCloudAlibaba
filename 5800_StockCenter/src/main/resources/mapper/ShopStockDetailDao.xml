@@ -4,6 +4,8 @@
 
     <resultMap type="com.seven.stock.entity.ShopStockDetailEntity" id="ShopStockDetailMap">
         <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="stockDetailNo" column="stock_detail_no" jdbcType="VARCHAR"/>
+        <result property="stockNo" column="stock_no" jdbcType="VARCHAR"/>
         <result property="skuNo" column="sku_no" jdbcType="VARCHAR"/>
         <result property="numOpt" column="num_opt" jdbcType="INTEGER"/>
         <result property="optType" column="opt_type" jdbcType="VARCHAR"/>
@@ -17,6 +19,8 @@
     <sql id="Base_column">
         id
         ,
+        stock_detail_no,
+        stock_no,
         sku_no,
         num_opt,
         opt_type,
@@ -37,8 +41,8 @@
 
     <!--新增所有列-->
     <insert id="addStockDetail" keyProperty="id" useGeneratedKeys="true">
-        insert into shop_stock_detail(id, sku_no, num_opt, opt_type, order_no)
-        values (#{id}, #{skuNo}, #{numOpt}, #{optType}, #{orderNo})
+        insert into shop_stock_detail(id, stock_detail_no, stock_no, sku_no, num_opt, opt_type, order_no)
+        values (#{id}, #{stockDetailNo}, #{stockNo}, #{skuNo}, #{numOpt}, #{optType}, #{orderNo})
     </insert>
 </mapper>
 

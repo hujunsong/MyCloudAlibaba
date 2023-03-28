@@ -39,6 +39,10 @@ public class CommonResult<T> implements Serializable {
         return this.setCode(code).setSmg(msg);
     }
 
+    public CommonResult<T> fail(String msg) {
+        return this.setCode(FAIL_CODE).setSmg(msg);
+    }
+
     public CommonResult<T> fail(String code, String msg, T t) {
         return this.setCode(code).setSmg(msg).setData(t);
     }

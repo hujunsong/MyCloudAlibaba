@@ -6,6 +6,8 @@ import com.seven.stock.dao.ShopStockDetailDao;
 import com.seven.stock.entity.ShopStockDetailEntity;
 import com.seven.stock.entity.ShopStockEntity;
 import com.seven.stock.service.ShopStockService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,8 @@ import static com.seven.stock.constant.ShopStockOptTypeEnum.*;
  */
 @Service("shopStockService")
 public class ShopStockServiceImpl implements ShopStockService {
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     private ShopStockDao shopStockDao;
@@ -53,7 +57,9 @@ public class ShopStockServiceImpl implements ShopStockService {
         if (shopStockEntity != null && shopStockEntity.getFlag() != 0) {
             return shopStockEntity;
         }
-        shopStockDao.createStock(SnowflakeIdGenerator.nextId(), skuNo);
+        long id = SnowflakeIdGenerator.nextId();
+        String stockNo = "ST" + id;
+        shopStockDao.createStock(id, stockNo, skuNo);
         return shopStockDao.queryBySkuNo(skuNo);
     }
 
@@ -69,13 +75,20 @@ public class ShopStockServiceImpl implements ShopStockService {
     @Override
     public ShopStockEntity addStock(String skuNo, Integer numsOpt, String orderNo) {
         ShopStockEntity shopStockEntity = shopStockDao.queryBySkuNo(skuNo);
+        String stockNo = shopStockEntity == null ? null : shopStockEntity.getStockNo();
         if (shopStockEntity == null) {
-            shopStockDao.createStock(SnowflakeIdGenerator.nextId(), skuNo);
+            long stockId = SnowflakeIdGenerator.nextId();
+            stockNo = "ST" + stockId;
+            shopStockDao.createStock(stockId, stockNo, skuNo);
         }
         int result = shopStockDao.addStock(skuNo, numsOpt);
         if (result == 1) {
             ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
-            shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
+            long id = SnowflakeIdGenerator.nextId();
+            String stockDetailNo = "STD" + id;
+            shopStockDetailEntity.setId(id);
+            shopStockDetailEntity.setStockDetailNo(stockDetailNo);
+            shopStockDetailEntity.setStockNo(stockNo);
             shopStockDetailEntity.setSkuNo(skuNo);
             shopStockDetailEntity.setNumOpt(numsOpt);
             shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_ADD.getOptType());
@@ -103,7 +116,11 @@ public class ShopStockServiceImpl implements ShopStockService {
         int result = shopStockDao.lockStock(skuNo, numsOpt);
         if (result == 1) {
             ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
-            shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
+            long id = SnowflakeIdGenerator.nextId();
+            String stockDetailNo = "STD" + id;
+            shopStockDetailEntity.setId(id);
+            shopStockDetailEntity.setStockDetailNo(stockDetailNo);
+            shopStockDetailEntity.setStockNo(shopStockEntity.getStockNo());
             shopStockDetailEntity.setSkuNo(skuNo);
             shopStockDetailEntity.setNumOpt(numsOpt);
             shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_LOCK.getOptType());
@@ -131,7 +148,11 @@ public class ShopStockServiceImpl implements ShopStockService {
         int result = shopStockDao.unlockStock(skuNo, numsOpt);
         if (result == 1) {
             ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
-            shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
+            long id = SnowflakeIdGenerator.nextId();
+            String stockDetailNo = "STD" + id;
+            shopStockDetailEntity.setId(id);
+            shopStockDetailEntity.setStockDetailNo(stockDetailNo);
+            shopStockDetailEntity.setStockNo(shopStockEntity.getStockNo());
             shopStockDetailEntity.setSkuNo(skuNo);
             shopStockDetailEntity.setNumOpt(numsOpt);
             shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_UNLOCK.getOptType());
@@ -159,7 +180,11 @@ public class ShopStockServiceImpl implements ShopStockService {
         int result = shopStockDao.reduceStock(skuNo, numsOpt);
         if (result == 1) {
             ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
-            shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
+            long id = SnowflakeIdGenerator.nextId();
+            String stockDetailNo = "STD" + id;
+            shopStockDetailEntity.setId(id);
+            shopStockDetailEntity.setStockDetailNo(stockDetailNo);
+            shopStockDetailEntity.setStockNo(shopStockEntity.getStockNo());
             shopStockDetailEntity.setSkuNo(skuNo);
             shopStockDetailEntity.setNumOpt(numsOpt);
             shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_REDUCE.getOptType());

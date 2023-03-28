@@ -4,6 +4,7 @@
 
     <resultMap type="com.seven.stock.entity.ShopStockEntity" id="ShopStockMap">
         <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="stockNo" column="stock_no" jdbcType="VARCHAR"/>
         <result property="skuNo" column="sku_no" jdbcType="VARCHAR"/>
         <result property="stockTotal" column="stock_total" jdbcType="INTEGER"/>
         <result property="stockLock" column="stock_lock" jdbcType="INTEGER"/>
@@ -18,15 +19,16 @@
     <sql id="Base_colum">
         id
         ,
-       sku_no,
-       stock_total,
-       stock_lock,
-       stock_available,
-       flag,
-       date_create,
-       date_update,
-       creator,
-       updater
+        stock_no,
+        sku_no,
+        stock_total,
+        stock_lock,
+        stock_available,
+        flag,
+        date_create,
+        date_update,
+        creator,
+        updater
     </sql>
 
     <!--查询单个-->
@@ -39,8 +41,8 @@
 
     <!--创建库存-->
     <insert id="createStock">
-        insert into shop_stock(id, sku_no, stock_total, stock_lock, stock_available, flag)
-        values (#{id}, #{skuNo}, 0, 0, 0, 1)
+        insert into shop_stock(id, stock_no, sku_no, stock_total, stock_lock, stock_available, flag)
+        values (#{id}, #{stockNo}, #{skuNo}, 0, 0, 0, 1)
     </insert>
 
     <!--添加库存-->

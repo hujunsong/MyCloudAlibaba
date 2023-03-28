@@ -16,6 +16,14 @@ public class ShopStockDetailEntity implements Serializable {
      */
     private Long id;
     /**
+     * 库存明细编号
+     */
+    private String stockDetailNo;
+    /**
+     * 库存编号
+     */
+    private String stockNo;
+    /**
      * 物料代码
      */
     private String skuNo;
@@ -55,6 +63,22 @@ public class ShopStockDetailEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStockDetailNo() {
+        return stockDetailNo;
+    }
+
+    public void setStockDetailNo(String stockDetailNo) {
+        this.stockDetailNo = stockDetailNo;
+    }
+
+    public String getStockNo() {
+        return stockNo;
+    }
+
+    public void setStockNo(String stockNo) {
+        this.stockNo = stockNo;
     }
 
     public String getSkuNo() {

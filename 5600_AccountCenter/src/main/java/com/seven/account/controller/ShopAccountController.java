@@ -3,6 +3,8 @@ package com.seven.account.controller;
 import com.sara.utils.response.CommonResult;
 import com.seven.account.entity.ShopAccountEntity;
 import com.seven.account.service.ShopAccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,8 @@ import java.math.BigDecimal;
  */
 @RestController
 public class ShopAccountController {
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     private ShopAccountService shopAccountService;
@@ -32,7 +36,7 @@ public class ShopAccountController {
             ShopAccountEntity shopAccountEntity = shopAccountService.createAccount(userNo);
             return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
         } catch (Exception exception) {
-            return new CommonResult<ShopAccountEntity>().fail();
+            return new CommonResult<ShopAccountEntity>().fail(exception.getMessage());
         }
     }
 
@@ -51,7 +55,7 @@ public class ShopAccountController {
             ShopAccountEntity shopAccountEntity = shopAccountService.addAmount(userNo, amount, orderNo);
             return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
         } catch (Exception exception) {
-            return new CommonResult<ShopAccountEntity>().fail();
+            return new CommonResult<ShopAccountEntity>().fail(exception.getMessage());
         }
     }
 
@@ -89,7 +93,7 @@ public class ShopAccountController {
             ShopAccountEntity shopAccountEntity = shopAccountService.unlockAmount(userNo, amount, orderNo);
             return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
         } catch (Exception exception) {
-            return new CommonResult<ShopAccountEntity>().fail();
+            return new CommonResult<ShopAccountEntity>().fail(exception.getMessage());
         }
     }
 
@@ -108,7 +112,7 @@ public class ShopAccountController {
             ShopAccountEntity shopAccountEntity = shopAccountService.reduceAmount(userNo, amount, orderNo);
             return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
         } catch (Exception exception) {
-            return new CommonResult<ShopAccountEntity>().fail();
+            return new CommonResult<ShopAccountEntity>().fail(exception.getMessage());
         }
     }
 }

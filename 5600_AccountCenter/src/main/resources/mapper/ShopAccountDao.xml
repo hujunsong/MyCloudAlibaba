@@ -4,6 +4,7 @@
 
     <resultMap type="com.seven.account.entity.ShopAccountEntity" id="ShopAccountMap">
         <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="accountNo" column="account_no" jdbcType="VARCHAR"/>
         <result property="userNo" column="user_no" jdbcType="VARCHAR"/>
         <result property="amountRemain" column="amount_remain" jdbcType="NUMERIC"/>
         <result property="amountAvailable" column="amount_available" jdbcType="NUMERIC"/>
@@ -18,6 +19,7 @@
     <sql id="base_column">
         id
         ,
+        account_no,
         user_no,
         amount_remain,
         amount_available,
@@ -30,8 +32,8 @@
     </sql>
 
     <insert id="createAccount">
-        insert into shop_account(id,user_no)
-        value (#{id},#{userNo})
+        insert into shop_account(id,account_no,user_no)
+        value (#{id},#{accountNo},#{userNo})
     </insert>
 
     <!--查询单个-->

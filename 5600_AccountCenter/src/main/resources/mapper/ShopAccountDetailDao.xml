@@ -4,6 +4,8 @@
 
     <resultMap type="com.seven.account.entity.ShopAccountDetailEntity" id="ShopAccountDetailMap">
         <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="accountDetailNo" column="account_detail_no" jdbcType="VARCHAR"/>
+        <result property="accountNo" column="account_no" jdbcType="VARCHAR"/>
         <result property="userNo" column="user_no" jdbcType="VARCHAR"/>
         <result property="amountOpt" column="amount_opt" jdbcType="NUMERIC"/>
         <result property="optType" column="opt_type" jdbcType="VARCHAR"/>
@@ -16,14 +18,16 @@
     <sql id="base_column">
         id
         ,
-       user_no,
-       amount_opt,
-       opt_type,
-       order_no,
-       date_create,
-       date_update,
-       creator,
-       updater
+        account_detail_no,
+        account_no,
+        user_no,
+        amount_opt,
+        opt_type,
+        order_no,
+        date_create,
+        date_update,
+        creator,
+        updater
     </sql>
 
     <!--查询单个-->
@@ -45,11 +49,15 @@
     <insert id="insertAccountDetail" parameterType="com.seven.account.entity.ShopAccountDetailEntity">
         insert into shop_account_detail
         (id,
+         account_detail_no,
+         account_no,
          user_no,
          amount_opt,
          opt_type,
          order_no)
         values (#{id},
+                #{accountDetailNo},
+                #{accountNo},
                 #{userNo},
                 #{amountOpt},
                 #{optType},

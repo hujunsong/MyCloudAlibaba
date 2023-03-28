@@ -3,6 +3,8 @@ package com.seven.stock.controller;
 import com.sara.utils.response.CommonResult;
 import com.seven.stock.entity.ShopStockEntity;
 import com.seven.stock.service.ShopStockService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,8 @@ import javax.annotation.Resource;
  */
 @RestController
 public class StockController {
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     private ShopStockService shopStockService;
@@ -31,7 +35,7 @@ public class StockController {
             ShopStockEntity shopStockEntity = shopStockService.createStock(skuNo);
             return new CommonResult<ShopStockEntity>().success(shopStockEntity);
         } catch (Exception exception) {
-            return new CommonResult<ShopStockEntity>().fail();
+            return new CommonResult<ShopStockEntity>().fail(exception.getMessage());
         }
     }
 
@@ -50,7 +54,7 @@ public class StockController {
             ShopStockEntity shopStockEntity = shopStockService.addStock(skuNo, nums, orderNo);
             return new CommonResult<ShopStockEntity>().success(shopStockEntity);
         } catch (Exception exception) {
-            return new CommonResult<ShopStockEntity>().fail();
+            return new CommonResult<ShopStockEntity>().fail(exception.getMessage());
         }
     }
 
@@ -67,7 +71,7 @@ public class StockController {
             ShopStockEntity shopStockEntity = shopStockService.queryBySkuNo(skuNo);
             return new CommonResult<ShopStockEntity>().success(shopStockEntity);
         } catch (Exception exception) {
-            return new CommonResult<ShopStockEntity>().fail();
+            return new CommonResult<ShopStockEntity>().fail(exception.getMessage());
         }
     }
 
@@ -86,7 +90,7 @@ public class StockController {
             ShopStockEntity shopStockEntity = shopStockService.lockStock(skuNo, num, orderNo);
             return new CommonResult<ShopStockEntity>().success(shopStockEntity);
         } catch (Exception exception) {
-            return new CommonResult<ShopStockEntity>().fail();
+            return new CommonResult<ShopStockEntity>().fail(exception.getMessage());
         }
     }
 
