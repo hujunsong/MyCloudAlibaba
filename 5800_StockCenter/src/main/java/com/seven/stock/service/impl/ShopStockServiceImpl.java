@@ -72,17 +72,18 @@ public class ShopStockServiceImpl implements ShopStockService {
         if (shopStockEntity == null) {
             shopStockDao.createStock(SnowflakeIdGenerator.nextId(), skuNo);
         }
-        shopStockDao.addStock(skuNo, numsOpt);
-
-        ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
-        shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
-        shopStockDetailEntity.setSkuNo(skuNo);
-        shopStockDetailEntity.setNumOpt(numsOpt);
-        shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_ADD.getOptType());
-        shopStockDetailEntity.setOrderNo(orderNo);
-        shopStockDetailDao.addStockDetail(shopStockDetailEntity);
-
-        return shopStockDao.queryBySkuNo(skuNo);
+        int result = shopStockDao.addStock(skuNo, numsOpt);
+        if (result == 1) {
+            ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
+            shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
+            shopStockDetailEntity.setSkuNo(skuNo);
+            shopStockDetailEntity.setNumOpt(numsOpt);
+            shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_ADD.getOptType());
+            shopStockDetailEntity.setOrderNo(orderNo);
+            shopStockDetailDao.addStockDetail(shopStockDetailEntity);
+            return shopStockDao.queryBySkuNo(skuNo);
+        }
+        throw new RuntimeException("添加库存,失败,orderNo=" + orderNo);
     }
 
     /**
@@ -97,17 +98,20 @@ public class ShopStockServiceImpl implements ShopStockService {
     public ShopStockEntity lockStock(String skuNo, Integer numsOpt, String orderNo) {
         ShopStockEntity shopStockEntity = shopStockDao.queryBySkuNo(skuNo);
         if (shopStockEntity == null) {
-            return null;
+            throw new RuntimeException("冻结库存,库存信息不存在,skuNo=" + skuNo);
         }
-        shopStockDao.lockStock(skuNo, numsOpt);
-        ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
-        shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
-        shopStockDetailEntity.setSkuNo(skuNo);
-        shopStockDetailEntity.setNumOpt(numsOpt);
-        shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_LOCK.getOptType());
-        shopStockDetailEntity.setOrderNo(orderNo);
-        shopStockDetailDao.addStockDetail(shopStockDetailEntity);
-        return shopStockDao.queryBySkuNo(skuNo);
+        int result = shopStockDao.lockStock(skuNo, numsOpt);
+        if (result == 1) {
+            ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
+            shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
+            shopStockDetailEntity.setSkuNo(skuNo);
+            shopStockDetailEntity.setNumOpt(numsOpt);
+            shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_LOCK.getOptType());
+            shopStockDetailEntity.setOrderNo(orderNo);
+            shopStockDetailDao.addStockDetail(shopStockDetailEntity);
+            return shopStockDao.queryBySkuNo(skuNo);
+        }
+        throw new RuntimeException("冻结库存,失败,orderNo=" + orderNo);
     }
 
     /**
@@ -122,17 +126,20 @@ public class ShopStockServiceImpl implements ShopStockService {
     public ShopStockEntity unlockStock(String skuNo, Integer numsOpt, String orderNo) {
         ShopStockEntity shopStockEntity = shopStockDao.queryBySkuNo(skuNo);
         if (shopStockEntity == null) {
-            return null;
+            throw new RuntimeException("解冻库存,库存信息不存在,skuNo=" + skuNo);
         }
-        shopStockDao.unlockStock(skuNo, numsOpt);
-        ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
-        shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
-        shopStockDetailEntity.setSkuNo(skuNo);
-        shopStockDetailEntity.setNumOpt(numsOpt);
-        shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_UNLOCK.getOptType());
-        shopStockDetailEntity.setOrderNo(orderNo);
-        shopStockDetailDao.addStockDetail(shopStockDetailEntity);
-        return shopStockDao.queryBySkuNo(skuNo);
+        int result = shopStockDao.unlockStock(skuNo, numsOpt);
+        if (result == 1) {
+            ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
+            shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
+            shopStockDetailEntity.setSkuNo(skuNo);
+            shopStockDetailEntity.setNumOpt(numsOpt);
+            shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_UNLOCK.getOptType());
+            shopStockDetailEntity.setOrderNo(orderNo);
+            shopStockDetailDao.addStockDetail(shopStockDetailEntity);
+            return shopStockDao.queryBySkuNo(skuNo);
+        }
+        throw new RuntimeException("解冻库存,失败,orderNo=" + orderNo);
     }
 
     /**
@@ -147,16 +154,19 @@ public class ShopStockServiceImpl implements ShopStockService {
     public ShopStockEntity reduceStock(String skuNo, Integer numsOpt, String orderNo) {
         ShopStockEntity shopStockEntity = shopStockDao.queryBySkuNo(skuNo);
         if (shopStockEntity == null) {
-            return null;
+            throw new RuntimeException("减少库存,库存信息不存在,skuNo=" + skuNo);
         }
-        shopStockDao.reduceStock(skuNo, numsOpt);
-        ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
-        shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
-        shopStockDetailEntity.setSkuNo(skuNo);
-        shopStockDetailEntity.setNumOpt(numsOpt);
-        shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_REDUCE.getOptType());
-        shopStockDetailEntity.setOrderNo(orderNo);
-        shopStockDetailDao.addStockDetail(shopStockDetailEntity);
-        return shopStockDao.queryBySkuNo(skuNo);
+        int result = shopStockDao.reduceStock(skuNo, numsOpt);
+        if (result == 1) {
+            ShopStockDetailEntity shopStockDetailEntity = new ShopStockDetailEntity();
+            shopStockDetailEntity.setId(SnowflakeIdGenerator.nextId());
+            shopStockDetailEntity.setSkuNo(skuNo);
+            shopStockDetailEntity.setNumOpt(numsOpt);
+            shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_REDUCE.getOptType());
+            shopStockDetailEntity.setOrderNo(orderNo);
+            shopStockDetailDao.addStockDetail(shopStockDetailEntity);
+            return shopStockDao.queryBySkuNo(skuNo);
+        }
+        throw new RuntimeException("减少库存,失败,orderNo=" + orderNo);
     }
 }

@@ -1,5 +1,6 @@
 package com.seven.stock.controller;
 
+import com.sara.utils.response.CommonResult;
 import com.seven.stock.entity.ShopStockEntity;
 import com.seven.stock.service.ShopStockService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,28 +19,56 @@ public class StockController {
     private ShopStockService shopStockService;
 
     /**
-     * 创建sku库存信息
+     * 创建库存
      *
      * @param skuNo 物料代码
      * @return 库存信息
      */
     @ResponseBody
     @PostMapping("/stock/create")
-    public ShopStockEntity createStock(String skuNo) {
-        return shopStockService.createStock(skuNo);
+    public CommonResult<ShopStockEntity> createStock(String skuNo) {
+        try {
+            ShopStockEntity shopStockEntity = shopStockService.createStock(skuNo);
+            return new CommonResult<ShopStockEntity>().success(shopStockEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopStockEntity>().fail();
+        }
     }
 
     /**
-     * 获取sku库存信息
+     * 增加库存
+     *
+     * @param skuNo   物料代码
+     * @param nums    增加库存数量
+     * @param orderNo 订单号
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/stock/add")
+    public CommonResult<ShopStockEntity> addStock(String skuNo, Integer nums, String orderNo) {
+        try {
+            ShopStockEntity shopStockEntity = shopStockService.addStock(skuNo, nums, orderNo);
+            return new CommonResult<ShopStockEntity>().success(shopStockEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopStockEntity>().fail();
+        }
+    }
+
+    /**
+     * 查询库存
      *
      * @param skuNo 物料代码
      * @return 库存信息
      */
     @ResponseBody
     @PostMapping("/stock/get")
-    public ShopStockEntity getStock(String skuNo) {
-        ShopStockEntity shopStockEntity = shopStockService.queryBySkuNo(skuNo);
-        return shopStockEntity;
+    public CommonResult<ShopStockEntity> getStock(String skuNo) {
+        try {
+            ShopStockEntity shopStockEntity = shopStockService.queryBySkuNo(skuNo);
+            return new CommonResult<ShopStockEntity>().success(shopStockEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopStockEntity>().fail();
+        }
     }
 
     /**
@@ -52,8 +81,13 @@ public class StockController {
      */
     @ResponseBody
     @PostMapping("/stock/lock")
-    public ShopStockEntity lockStock(String skuNo, Integer num, String orderNo) {
-        return shopStockService.lockStock(skuNo, num, orderNo);
+    public CommonResult<ShopStockEntity> lockStock(String skuNo, Integer num, String orderNo) {
+        try {
+            ShopStockEntity shopStockEntity = shopStockService.lockStock(skuNo, num, orderNo);
+            return new CommonResult<ShopStockEntity>().success(shopStockEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopStockEntity>().fail();
+        }
     }
 
     /**
@@ -66,8 +100,13 @@ public class StockController {
      */
     @ResponseBody
     @PostMapping("/stock/unlock")
-    public ShopStockEntity unlockStock(String skuNo, Integer num, String orderNo) {
-        return shopStockService.unlockStock(skuNo, num, orderNo);
+    public CommonResult<ShopStockEntity> unlockStock(String skuNo, Integer num, String orderNo) {
+        try {
+            ShopStockEntity shopStockEntity = shopStockService.unlockStock(skuNo, num, orderNo);
+            return new CommonResult<ShopStockEntity>().success(shopStockEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopStockEntity>().fail();
+        }
     }
 
     /**
@@ -80,7 +119,12 @@ public class StockController {
      */
     @ResponseBody
     @PostMapping("/stock/reduce")
-    public ShopStockEntity reduceStock(String skuNo, Integer num, String orderNo) {
-        return shopStockService.reduceStock(skuNo, num, orderNo);
+    public CommonResult<ShopStockEntity> reduceStock(String skuNo, Integer num, String orderNo) {
+        try {
+            ShopStockEntity shopStockEntity = shopStockService.reduceStock(skuNo, num, orderNo);
+            return new CommonResult<ShopStockEntity>().success(shopStockEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopStockEntity>().fail();
+        }
     }
 }

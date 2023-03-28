@@ -45,35 +45,35 @@
     <!-- 增加金额 -->
     <update id="addAmount" parameterType="map">
         update shop_account
-        set amount_available = amount_available + ${amountOpt},
-            amount_remain    = amount_remain + ${amountOpt}
-        where user_no = ${userNo}
+        set amount_available = amount_available + #{amountOpt},
+            amount_remain    = amount_remain + #{amountOpt}
+        where user_no = #{userNo}
     </update>
 
     <!-- 冻结金额 -->
     <update id="lockAmount" parameterType="map">
         update shop_account
-        set amount_available = amount_available - ${amountOpt},
-            amount_lock      = amount_lock + ${amountOpt}
-        where user_no = ${userNo}
-          and amount_available > ${amountOpt}
+        set amount_available = amount_available - #{amountOpt},
+            amount_lock      = amount_lock + #{amountOpt}
+        where user_no = #{userNo}
+          and amount_available >= #{amountOpt}
     </update>
 
     <!-- 解冻金额 -->
     <update id="unlockAmount" parameterType="map">
         update shop_account
-        set amount_available = amount_available + ${amountOpt},
-            amount_lock      = amount_lock - ${amountOpt}
-        where user_no = ${userNo}
-          and amount_lock > ${amountOpt}
+        set amount_available = amount_available + #{amountOpt},
+            amount_lock      = amount_lock - #{amountOpt}
+        where user_no = #{userNo}
+          and amount_lock >= #{amountOpt}
     </update>
 
     <!-- 减少金额 -->
     <update id="reduceAmount" parameterType="map">
         update shop_account
-        set amount_remain = amount_remain - ${amountOpt},
-            amount_lock   = amount_lock - ${amountOpt}
-        where user_no = ${userNo}
-          and amount_lock > ${amountOpt}
+        set amount_remain = amount_remain - #{amountOpt},
+            amount_lock   = amount_lock - #{amountOpt}
+        where user_no = #{userNo}
+          and amount_lock >= #{amountOpt}
     </update>
 </mapper>

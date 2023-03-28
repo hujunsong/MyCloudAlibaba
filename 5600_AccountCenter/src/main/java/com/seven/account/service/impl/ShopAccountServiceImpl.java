@@ -62,7 +62,7 @@ public class ShopAccountServiceImpl implements ShopAccountService {
 
         ShopAccountEntity shopAccountEntity = shopAccountDao.queryByUserNo(userNo);
         if (shopAccountEntity == null) {
-            return null;
+            throw new RuntimeException("充值账户不存在,userNo=" + userNo);
         }
         int accountResult = shopAccountDao.addAmount(userNo, amountOpt);
         if (accountResult == 1) {
@@ -91,7 +91,7 @@ public class ShopAccountServiceImpl implements ShopAccountService {
 
         ShopAccountEntity shopAccountEntity = shopAccountDao.queryByUserNo(userNo);
         if (shopAccountEntity == null) {
-            return null;
+            throw new RuntimeException("冻结金额,账户不存在,userNo=" + userNo);
         }
         int accountResult = shopAccountDao.lockAmount(userNo, amountOpt);
         if (accountResult == 1) {
@@ -120,7 +120,7 @@ public class ShopAccountServiceImpl implements ShopAccountService {
 
         ShopAccountEntity shopAccountEntity = shopAccountDao.queryByUserNo(userNo);
         if (shopAccountEntity == null) {
-            return null;
+            throw new RuntimeException("解冻金额,账户不存在,userNo=" + userNo);
         }
         int accountResult = shopAccountDao.unlockAmount(userNo, amountOpt);
         if (accountResult == 1) {
@@ -149,7 +149,7 @@ public class ShopAccountServiceImpl implements ShopAccountService {
 
         ShopAccountEntity shopAccountEntity = shopAccountDao.queryByUserNo(userNo);
         if (shopAccountEntity == null) {
-            return null;
+            throw new RuntimeException("扣减金额,账户不存在,userNo=" + userNo);
         }
         int accountResult = shopAccountDao.reduceAmount(userNo, amountOpt);
         if (accountResult == 1) {

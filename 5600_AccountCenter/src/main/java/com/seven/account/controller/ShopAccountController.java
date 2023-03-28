@@ -1,5 +1,6 @@
 package com.seven.account.controller;
 
+import com.sara.utils.response.CommonResult;
 import com.seven.account.entity.ShopAccountEntity;
 import com.seven.account.service.ShopAccountService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,10 +27,14 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/create")
-    public ShopAccountEntity createAccount(String userNo) {
-        return shopAccountService.createAccount(userNo);
+    public CommonResult<ShopAccountEntity> createAccount(String userNo) {
+        try {
+            ShopAccountEntity shopAccountEntity = shopAccountService.createAccount(userNo);
+            return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopAccountEntity>().fail();
+        }
     }
-
 
     /**
      * 用户充值
@@ -41,8 +46,13 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/add")
-    public ShopAccountEntity addAmount(String userNo, BigDecimal amount, String orderNo) {
-        return shopAccountService.addAmount(userNo, amount, orderNo);
+    public CommonResult<ShopAccountEntity> addAmount(String userNo, BigDecimal amount, String orderNo) {
+        try {
+            ShopAccountEntity shopAccountEntity = shopAccountService.addAmount(userNo, amount, orderNo);
+            return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopAccountEntity>().fail();
+        }
     }
 
     /**
@@ -55,8 +65,13 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/lock")
-    public ShopAccountEntity lockAmount(String userNo, BigDecimal amount, String orderNo) {
-        return shopAccountService.lockAmount(userNo, amount, orderNo);
+    public CommonResult<ShopAccountEntity> lockAmount(String userNo, BigDecimal amount, String orderNo) {
+        try {
+            ShopAccountEntity shopAccountEntity = shopAccountService.lockAmount(userNo, amount, orderNo);
+            return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopAccountEntity>().fail();
+        }
     }
 
     /**
@@ -69,8 +84,13 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/unlock")
-    public ShopAccountEntity unlockAmount(String userNo, BigDecimal amount, String orderNo) {
-        return shopAccountService.unlockAmount(userNo, amount, orderNo);
+    public CommonResult<ShopAccountEntity> unlockAmount(String userNo, BigDecimal amount, String orderNo) {
+        try {
+            ShopAccountEntity shopAccountEntity = shopAccountService.unlockAmount(userNo, amount, orderNo);
+            return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopAccountEntity>().fail();
+        }
     }
 
     /**
@@ -83,7 +103,12 @@ public class ShopAccountController {
      */
     @ResponseBody
     @PostMapping("/account/reduce")
-    public ShopAccountEntity reduceAmount(String userNo, BigDecimal amount, String orderNo) {
-        return shopAccountService.reduceAmount(userNo, amount, orderNo);
+    public CommonResult<ShopAccountEntity> reduceAmount(String userNo, BigDecimal amount, String orderNo) {
+        try {
+            ShopAccountEntity shopAccountEntity = shopAccountService.reduceAmount(userNo, amount, orderNo);
+            return new CommonResult<ShopAccountEntity>().success(shopAccountEntity);
+        } catch (Exception exception) {
+            return new CommonResult<ShopAccountEntity>().fail();
+        }
     }
 }
