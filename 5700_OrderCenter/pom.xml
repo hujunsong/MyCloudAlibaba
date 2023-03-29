@@ -10,14 +10,34 @@
         <version>2.3.12.RELEASE</version>
     </parent>
 
-    <groupId>seven.io</groupId>
+    <groupId>sara.io</groupId>
     <artifactId>5700_OrderCenter</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
-            <groupId>com.sara</groupId>
-            <artifactId>SaraUtils</artifactId>
+            <groupId>sara.io</groupId>
+            <artifactId>5600_AccountApi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>sara.io</groupId>
+            <artifactId>5700_OrderApi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>seven.io</groupId>
+            <artifactId>5600_AccountApi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>sara.io</groupId>
+            <artifactId>5800_StockApi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>sara.io</groupId>
+            <artifactId>0000_SaraTools</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -47,6 +67,15 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

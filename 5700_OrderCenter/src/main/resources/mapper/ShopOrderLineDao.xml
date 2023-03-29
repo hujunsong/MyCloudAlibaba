@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sara.order.dao.ShopOrderLineDao">
+
+    <resultMap type="com.sara.order.entity.ShopOrderLine" id="ShopOrderLineMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="orderLineNo" column="order_line_no" jdbcType="VARCHAR"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+        <result property="userNo" column="user_no" jdbcType="VARCHAR"/>
+        <result property="skuNo" column="sku_no" jdbcType="VARCHAR"/>
+        <result property="skuName" column="sku_name" jdbcType="VARCHAR"/>
+        <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="amountPayable" column="amount_payable" jdbcType="NUMERIC"/>
+        <result property="amountActual" column="amount_actual" jdbcType="NUMERIC"/>
+        <result property="amountDiscount" column="amount_discount" jdbcType="NUMERIC"/>
+        <result property="dateCreate" column="date_create" jdbcType="TIMESTAMP"/>
+        <result property="dateUpdate" column="date_update" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column">
+        id
+        ,
+        order_line_no,
+        order_no,
+        user_no,
+        sku_no,
+        sku_name,
+        quantity,
+        price,
+        amount_payable,
+        amount_actual,
+        amount_discount,
+        date_create,
+        date_update,
+        creator,
+        updater
+    </sql>
+
+    <!--查询单个-->
+    <select id="queryByOrderLineNo" resultMap="ShopOrderLineMap">
+        select
+        <include refid="Base_Column"/>
+        from shop_order_line
+        where order_line_no = #{orderLineNo}
+    </select>
+
+    <!--查询单个-->
+    <select id="listByOrderNo" resultMap="ShopOrderLineMap">
+        select
+        <include refid="Base_Column"/>
+        from shop_order_line
+        where order_no = #{orderNo}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into shop_order_line(id, order_line_no, order_no, user_no, sku_no, sku_name, quantity, price,
+                                    amount_payable, amount_actual, amount_discount)
+        values (#{id}, #{orderLineNo}, #{orderNo}, #{userNo}, #{skuNo}, #{skuName}, #{quantity}, #{price},
+                #{amountPayable}, #{amountActual}, #{amountDiscount})
+    </insert>
+
+    <insert id="insertBatch">
+        insert into shop_order_line(id,order_line_no, order_no, user_no, sku_no, sku_name, quantity, price,
+        amount_payable,
+        amount_actual, amount_discount, date_create, date_update, creator, updater)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.id},#{entity.orderLineNo}, #{entity.orderNo}, #{entity.userNo}, #{entity.skuNo},
+            #{entity.skuName},#{entity.quantity}, #{entity.price}, #{entity.amountPayable}, #{entity.amountActual},
+            #{entity.amountDiscount}, #{entity.dateCreate}, #{entity.dateUpdate}, #{entity.creator}, #{entity.updater})
+        </foreach>
+    </insert>
+</mapper>
+

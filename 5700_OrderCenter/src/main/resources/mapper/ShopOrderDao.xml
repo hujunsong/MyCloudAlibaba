@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sara.order.dao.ShopOrderDao">
+
+    <resultMap type="com.sara.order.entity.ShopOrder" id="ShopOrderMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+        <result property="userNo" column="user_no" jdbcType="VARCHAR"/>
+        <result property="orderStatus" column="order_status" jdbcType="VARCHAR"/>
+        <result property="amountPayable" column="amount_payable" jdbcType="NUMERIC"/>
+        <result property="amountActual" column="amount_actual" jdbcType="NUMERIC"/>
+        <result property="amountDiscount" column="amount_discount" jdbcType="NUMERIC"/>
+        <result property="datePaid" column="date_paid" jdbcType="TIMESTAMP"/>
+        <result property="dateShipped" column="date_shipped" jdbcType="TIMESTAMP"/>
+        <result property="courierCompany" column="courier_company" jdbcType="VARCHAR"/>
+        <result property="courierNo" column="courier_no" jdbcType="VARCHAR"/>
+        <result property="dateReceived" column="date_received" jdbcType="TIMESTAMP"/>
+        <result property="cancelDate" column="cancel_date" jdbcType="TIMESTAMP"/>
+        <result property="canceler" column="canceler" jdbcType="VARCHAR"/>
+        <result property="cancelReason" column="cancel_reason" jdbcType="VARCHAR"/>
+        <result property="lockDate" column="lock_date" jdbcType="TIMESTAMP"/>
+        <result property="locker" column="locker" jdbcType="VARCHAR"/>
+        <result property="lockReason" column="lock_reason" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column">
+        id
+        ,
+        order_no,
+        user_no,
+        order_status,
+        amount_payable,
+        amount_actual,
+        amount_discount,
+        date_paid,
+        date_shipped,
+        courier_company,
+        courier_no,
+        date_received,
+        cancel_date,
+        canceler,
+        cancel_reason,
+        lock_date,
+        locker,
+        lock_reason,
+        create_date,
+        update_date,
+        creator,
+        updater
+    </sql>
+    <!--查询单个-->
+    <select id="queryByOrderNo" resultMap="ShopOrderMap">
+        select
+        <include refid="Base_Column"/>
+        from shop_order
+        where order_no = #{orderNo}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into shop_order(id, order_no, user_no, order_status, amount_payable, amount_actual, amount_discount,
+                               date_paid, date_shipped, courier_company, courier_no, date_received, cancel_date,
+                               canceler, cancel_reason, lock_date, locker, lock_reason)
+        values (#{id}, #{orderNo}, #{userNo}, #{orderStatus}, #{amountPayable}, #{amountActual}, #{amountDiscount},
+                #{datePaid}, #{dateShipped}, #{courierCompany}, #{courierNo}, #{dateReceived}, #{cancelDate},
+                #{canceler}, #{cancelReason}, #{lockDate}, #{locker}, #{lockReason})
+    </insert>
+</mapper>
+

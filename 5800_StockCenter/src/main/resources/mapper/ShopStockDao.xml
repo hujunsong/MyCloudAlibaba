@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.seven.stock.dao.ShopStockDao">
+<mapper namespace="com.sara.stock.dao.ShopStockDao">
 
-    <resultMap type="com.seven.stock.entity.ShopStockEntity" id="ShopStockMap">
+    <resultMap type="com.sara.stock.entity.ShopStockEntity" id="ShopStockMap">
         <result property="id" column="id" jdbcType="BIGINT"/>
         <result property="stockNo" column="stock_no" jdbcType="VARCHAR"/>
         <result property="skuNo" column="sku_no" jdbcType="VARCHAR"/>

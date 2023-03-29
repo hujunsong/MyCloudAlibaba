@@ -12,6 +12,12 @@
         <option value="$PROJECT_DIR$/5600_AccountCenter/pom.xml" />
         <option value="$PROJECT_DIR$/5700_OrderCenter/pom.xml" />
         <option value="$PROJECT_DIR$/5800_StockCenter/pom.xml" />
+        <option value="$PROJECT_DIR$/5600_AccountApi/pom.xml" />
+        <option value="$PROJECT_DIR$/5700_OrderApi/pom.xml" />
+        <option value="$PROJECT_DIR$/5800_StockApi/pom.xml" />
+        <option value="$PROJECT_DIR$/5000_SaraUtils/pom.xml" />
+        <option value="$PROJECT_DIR$/5000_SaraTools/pom.xml" />
+        <option value="$PROJECT_DIR$/0000_SaraTools/pom.xml" />
       </list>
     </option>
   </component>

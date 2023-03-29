@@ -8,33 +8,39 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="5600_AccountCenter" />
-        <module name="SaraUtils" />
+        <module name="0000_SaraTools" />
         <module name="5700_OrderCenter" />
+        <module name="5600_AccountApi" />
         <module name="5800_StockCenter" />
+        <module name="5700_OrderApi" />
+        <module name="5800_StockApi" />
         <module name="5500_ShopGateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="0000_SaraTools" target="8" />
       <module name="5500_ShopGateway" target="1.8" />
+      <module name="5600_AccountApi" target="8" />
       <module name="5600_AccountCenter" target="1.8" />
+      <module name="5700_OrderApi" target="8" />
       <module name="5700_OrderCenter" target="1.8" />
+      <module name="5800_StockApi" target="8" />
       <module name="5800_StockCenter" target="1.8" />
       <module name="AccountCenter_5051" target="1.8" />
       <module name="OrderCenter_8081" target="1.8" />
-      <module name="SaraUtils" target="8" />
       <module name="ShopGateway_6061" target="1.8" />
       <module name="StockCenter_7081" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="0000_SaraTools" options="-parameters" />
       <module name="5500_ShopGateway" options="-parameters" />
       <module name="5600_AccountCenter" options="-parameters" />
       <module name="5700_OrderCenter" options="-parameters" />
       <module name="5800_StockCenter" options="-parameters" />
       <module name="AccountCenter_5051" options="-parameters" />
       <module name="OrderCenter_8081" options="-parameters" />
-      <module name="SaraUtils" options="-parameters" />
       <module name="ShopGateway_6061" options="-parameters" />
       <module name="StockCenter_7081" options="-parameters" />
     </option>
