@@ -28,7 +28,9 @@ public class StockController {
      * 创建库存
      *
      * @param skuNo 物料代码
-     * @return 库存信息
+     * @return : com.sara.utils.response.CommonResult<com.sara.stock.dto.ShopStockDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:51
      */
     @ResponseBody
     @PostMapping("/stock/create")
@@ -48,7 +50,9 @@ public class StockController {
      * @param skuNo   物料代码
      * @param nums    增加库存数量
      * @param orderNo 订单号
-     * @return
+     * @return : com.sara.utils.response.CommonResult<com.sara.stock.dto.ShopStockDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:52
      */
     @ResponseBody
     @PostMapping("/stock/add")
@@ -65,7 +69,9 @@ public class StockController {
      * 查询库存
      *
      * @param skuNo 物料代码
-     * @return 库存信息
+     * @return : com.sara.utils.response.CommonResult<com.sara.stock.dto.ShopStockDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:52
      */
     @ResponseBody
     @PostMapping("/stock/get")
@@ -84,7 +90,9 @@ public class StockController {
      * @param skuNo   物料代码
      * @param num     数量
      * @param orderNo 订单号
-     * @return
+     * @return : com.sara.utils.response.CommonResult<com.sara.stock.dto.ShopStockDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:53
      */
     @ResponseBody
     @PostMapping("/stock/lock")
@@ -103,7 +111,9 @@ public class StockController {
      * @param skuNo   物料代码
      * @param num     数量
      * @param orderNo 订单号
-     * @return
+     * @return : com.sara.utils.response.CommonResult<com.sara.stock.dto.ShopStockDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:53
      */
     @ResponseBody
     @PostMapping("/stock/unlock")
@@ -122,7 +132,9 @@ public class StockController {
      * @param skuNo   物料代码
      * @param num     数量
      * @param orderNo 订单号
-     * @return
+     * @return : com.sara.utils.response.CommonResult<com.sara.stock.dto.ShopStockDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:54
      */
     @ResponseBody
     @PostMapping("/stock/reduce")

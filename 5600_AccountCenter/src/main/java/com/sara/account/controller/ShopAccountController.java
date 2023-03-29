@@ -29,7 +29,9 @@ public class ShopAccountController {
      * 创建账号
      *
      * @param userNo 用户号
-     * @return OK
+     * @return : com.sara.utils.response.CommonResult<com.sara.account.dto.ShopAccountDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:47
      */
     @ResponseBody
     @PostMapping("/account/create")
@@ -48,7 +50,9 @@ public class ShopAccountController {
      * @param userNo  用户号
      * @param amount  充值金额
      * @param orderNo 充值订单号
-     * @return
+     * @return : com.sara.utils.response.CommonResult<com.sara.account.dto.ShopAccountDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:49
      */
     @ResponseBody
     @PostMapping("/account/add")
@@ -86,7 +90,9 @@ public class ShopAccountController {
      * @param userNo  用户号
      * @param amount  解冻金额
      * @param orderNo 订单号
-     * @return
+     * @return : com.sara.utils.response.CommonResult<com.sara.account.dto.ShopAccountDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:50
      */
     @ResponseBody
     @PostMapping("/account/unlock")
@@ -105,7 +111,9 @@ public class ShopAccountController {
      * @param userNo  用户号
      * @param amount  减少金额
      * @param orderNo 订单号
-     * @return
+     * @return : com.sara.utils.response.CommonResult<com.sara.account.dto.ShopAccountDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 16:50
      */
     @ResponseBody
     @PostMapping("/account/reduce")
