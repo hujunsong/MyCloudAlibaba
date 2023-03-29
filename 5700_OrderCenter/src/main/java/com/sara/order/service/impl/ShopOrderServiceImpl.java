@@ -1,9 +1,9 @@
 package com.sara.order.service.impl;
 
-import com.sara.order.dao.ShopOrderLineDao;
-import com.sara.order.outside.StockInterface;
-import com.sara.order.service.ShopOrderService;
 import com.sara.order.dao.ShopOrderDao;
+import com.sara.order.dao.ShopOrderLineDao;
+import com.sara.order.service.ShopOrderService;
+import com.sara.stock.func.StockInterface;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
