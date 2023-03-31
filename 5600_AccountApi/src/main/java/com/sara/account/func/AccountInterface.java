@@ -2,12 +2,12 @@ package com.sara.account.func;
 
 import com.sara.account.dto.ShopAccountDto;
 import com.sara.utils.response.CommonResult;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 /**

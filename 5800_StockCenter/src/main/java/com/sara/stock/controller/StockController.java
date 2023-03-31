@@ -81,7 +81,7 @@ public class StockController implements StockInterface {
     @PostMapping("/stock/add")
     public CommonResult<Void> addStock(@RequestBody @Valid ShopStockOptDto shopStockOptDto) {
         try {
-            shopStockService.batchLockStock(shopStockOptDto.getShopStockOptDetailDtoList(), shopStockOptDto.getFlowNo());
+            shopStockService.addStockBatch(shopStockOptDto.getShopStockOptDetailDtoList(), shopStockOptDto.getFlowNo());
             return new CommonResult().success();
         } catch (Exception exception) {
             return new CommonResult().fail(exception.getMessage());

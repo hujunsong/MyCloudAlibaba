@@ -3,13 +3,13 @@ package com.sara.order.func;
 import com.sara.order.dto.ShopOrderApplyDto;
 import com.sara.order.dto.ShopOrderDto;
 import com.sara.utils.response.CommonResult;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**

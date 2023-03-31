@@ -1,10 +1,9 @@
 package com.sara.order.dto;
 
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
-
+import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -54,7 +53,7 @@ public class ShopOrderApplyDto implements Serializable {
     public void setAmountPayable(BigDecimal amountPayable) {
         this.amountPayable = amountPayable;
     }
-    
+
     public BigDecimal getAmountDiscount() {
         return amountDiscount;
     }

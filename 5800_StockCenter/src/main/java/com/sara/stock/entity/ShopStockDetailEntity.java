@@ -36,7 +36,7 @@ public class ShopStockDetailEntity implements Serializable {
      */
     private String optType;
     /**
-     * 订单号
+     * 操作流水号
      */
     private String flowNo;
     /**

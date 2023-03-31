@@ -1,9 +1,8 @@
 package com.sara.stock.dto;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class ShopStockOptDto implements Serializable {
      * 操作明细
      */
     @Valid
-    @NotNull
+    @NotEmpty
     private List<ShopStockOptDetailDto> shopStockOptDetailDtoList;
 
     public String getFlowNo() {
