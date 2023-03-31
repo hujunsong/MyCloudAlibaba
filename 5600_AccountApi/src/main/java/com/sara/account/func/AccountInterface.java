@@ -2,8 +2,11 @@ package com.sara.account.func;
 
 import com.sara.account.dto.ShopAccountDto;
 import com.sara.utils.response.CommonResult;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 
@@ -25,7 +28,7 @@ public interface AccountInterface {
      * </pre>
      */
     @PostMapping("/account/create")
-    CommonResult<ShopAccountDto> createAccount(String userNo);
+    CommonResult<ShopAccountDto> createAccount(@RequestParam @NotBlank String userNo);
 
     /**
      * <pre>
@@ -39,7 +42,9 @@ public interface AccountInterface {
      * </pre>
      */
     @PostMapping("/account/add")
-    CommonResult<ShopAccountDto> addAmount(String userNo, BigDecimal amount, String orderNo);
+    CommonResult<ShopAccountDto> addAmount(@RequestParam @NotBlank String userNo,
+                                           @RequestParam @Digits(integer = 6, fraction = 2) BigDecimal amount,
+                                           @RequestParam @NotBlank String orderNo);
 
     /**
      * <pre>
@@ -53,7 +58,9 @@ public interface AccountInterface {
      * </pre>
      */
     @PostMapping("/account/lock")
-    CommonResult<ShopAccountDto> lockAmount(String userNo, BigDecimal amount, String orderNo);
+    CommonResult<ShopAccountDto> lockAmount(@RequestParam @NotBlank String userNo,
+                                            @RequestParam @Digits(integer = 6, fraction = 2) BigDecimal amount,
+                                            @RequestParam @NotBlank String orderNo);
 
     /**
      * <pre>
@@ -67,7 +74,9 @@ public interface AccountInterface {
      * </pre>
      */
     @PostMapping("/account/unlock")
-    CommonResult<ShopAccountDto> unlockAmount(String userNo, BigDecimal amount, String orderNo);
+    CommonResult<ShopAccountDto> unlockAmount(@RequestParam @NotBlank String userNo,
+                                              @RequestParam @Digits(integer = 6, fraction = 2) BigDecimal amount,
+                                              @RequestParam @NotBlank String orderNo);
 
     /**
      * <pre>
@@ -81,5 +90,7 @@ public interface AccountInterface {
      * </pre>
      */
     @PostMapping("/account/reduce")
-    CommonResult<ShopAccountDto> reduceAmount(String userNo, BigDecimal amount, String orderNo);
+    CommonResult<ShopAccountDto> reduceAmount(@RequestParam @NotBlank String userNo,
+                                              @RequestParam @Digits(integer = 6, fraction = 2) BigDecimal amount,
+                                              @RequestParam @NotBlank String orderNo);
 }

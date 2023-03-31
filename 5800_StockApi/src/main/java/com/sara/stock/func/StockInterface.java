@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Description: 库存接口
@@ -26,7 +27,7 @@ public interface StockInterface {
      * @date: 2023/3/31 10:22
      */
     @PostMapping("/stock/create")
-    CommonResult<ShopStockDto> createStock(@RequestBody @NotBlank String skuNo);
+    CommonResult<ShopStockDto> createStock(@RequestParam @NotBlank String skuNo);
 
     /**
      * 查询库存
@@ -37,7 +38,7 @@ public interface StockInterface {
      * @date: 2023/3/31 08:58
      */
     @PostMapping("/stock/get")
-    CommonResult<ShopStockDto> getStock(@RequestBody @NotBlank String skuNo);
+    CommonResult<ShopStockDto> getStock(@RequestParam @NotBlank String skuNo);
 
     /**
      * 增加库存

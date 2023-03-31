@@ -9,13 +9,11 @@ import com.sara.stock.utils.PojoConverter;
 import com.sara.utils.response.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 /**
  * 库存接口
@@ -42,7 +40,7 @@ public class StockController implements StockInterface {
     @Override
     @ResponseBody
     @PostMapping("/stock/create")
-    public CommonResult<ShopStockDto> createStock(String skuNo) {
+    public CommonResult<ShopStockDto> createStock(@RequestParam @NotBlank String skuNo) {
         try {
             ShopStockEntity shopStockEntity = shopStockService.createStock(skuNo);
             return new CommonResult<ShopStockDto>()
@@ -63,7 +61,7 @@ public class StockController implements StockInterface {
     @Override
     @ResponseBody
     @PostMapping("/stock/get")
-    public CommonResult<ShopStockDto> getStock(String skuNo) {
+    public CommonResult<ShopStockDto> getStock(@RequestParam @NotBlank String skuNo) {
         try {
             ShopStockEntity shopStockEntity = shopStockService.queryBySkuNo(skuNo);
             return new CommonResult<ShopStockDto>().success(PojoConverter.ShopStockEntity2Dto(shopStockEntity));

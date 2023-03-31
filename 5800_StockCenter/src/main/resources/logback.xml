@@ -29,7 +29,7 @@
         </triggeringPolicy>
     </appender>
 
-    <logger name="com.sara.order" level="debug"/>
+    <logger name="com.sara" level="debug"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="com.alibaba.druid" level="INFO"/>
 

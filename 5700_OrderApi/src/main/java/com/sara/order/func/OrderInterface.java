@@ -4,9 +4,11 @@ import com.sara.order.dto.ShopOrderApplyDto;
 import com.sara.order.dto.ShopOrderDto;
 import com.sara.utils.response.CommonResult;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,16 +40,16 @@ public interface OrderInterface {
      * @date: 2023/3/29 19:01
      */
     @PostMapping("/order/queryByOrderNo")
-    CommonResult<ShopOrderDto> queryByOrderNo(String orderNo);
+    CommonResult<ShopOrderDto> queryByOrderNo(@RequestParam @NotBlank String orderNo);
 
     /**
      * 根据用户号查询
      *
-     * @param userNo
+     * @param userNo 用户号
      * @return : com.sara.utils.response.CommonResult<List<ShopOrderDto>>
      * @author: hujunsong
      * @date: 2023/3/29 19:02
      */
     @PostMapping("/order/queryByUserNo")
-    CommonResult<List<ShopOrderDto>> queryByUserNo(String userNo);
+    CommonResult<List<ShopOrderDto>> queryByUserNo(@RequestParam @NotBlank String userNo);
 }

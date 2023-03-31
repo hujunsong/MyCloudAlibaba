@@ -9,13 +9,11 @@ import com.sara.order.utils.PojoConvertor;
 import com.sara.utils.response.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -65,7 +63,7 @@ public class OrderController implements OrderInterface {
     @Override
     @ResponseBody
     @PostMapping("/order/queryByOrderNo")
-    public CommonResult<ShopOrderDto> queryByOrderNo(String orderNo) {
+    public CommonResult<ShopOrderDto> queryByOrderNo(@RequestParam @NotBlank String orderNo) {
         try {
             ShopOrderEntity shopOrderEntity = shopOrderService.queryByOrderNo(orderNo);
             return new CommonResult<ShopOrderDto>().success(PojoConvertor.shopOrderEntity2Dto(shopOrderEntity));
@@ -85,7 +83,7 @@ public class OrderController implements OrderInterface {
     @Override
     @ResponseBody
     @PostMapping("/order/queryByUserNo")
-    public CommonResult<List<ShopOrderDto>> queryByUserNo(String userNo) {
+    public CommonResult<List<ShopOrderDto>> queryByUserNo(@RequestParam @NotBlank String userNo) {
         try {
             List<ShopOrderEntity> shopOrderEntityList = shopOrderService.queryByUserNo(userNo);
 
