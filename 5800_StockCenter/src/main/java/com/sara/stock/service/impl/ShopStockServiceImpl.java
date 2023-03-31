@@ -1,11 +1,12 @@
 package com.sara.stock.service.impl;
 
-import com.sara.utils.snowflake.nacos.SnowflakeIdGenerator;
 import com.sara.stock.dao.ShopStockDao;
 import com.sara.stock.dao.ShopStockDetailDao;
+import com.sara.stock.dto.ShopStockOptDetailDto;
 import com.sara.stock.entity.ShopStockDetailEntity;
 import com.sara.stock.entity.ShopStockEntity;
 import com.sara.stock.service.ShopStockService;
+import com.sara.utils.snowflake.nacos.SnowflakeIdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 import static com.sara.stock.constant.ShopStockOptTypeEnum.*;
 
@@ -64,16 +66,33 @@ public class ShopStockServiceImpl implements ShopStockService {
     }
 
     /**
+     * 批量添加库存
+     *
+     * @param shopStockLockDtoList
+     * @param flowNo
+     * @return : com.sara.stock.entity.ShopStockEntity
+     * @author: hujunsong
+     * @date: 2023/3/30 23:17
+     */
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Override
+    public void addStockBatch(List<ShopStockOptDetailDto> shopStockLockDtoList, String flowNo) {
+        for (int i = 0; i < shopStockLockDtoList.size(); i++) {
+            this.addStock(shopStockLockDtoList.get(i).getSkuNo(), shopStockLockDtoList.get(i).getNums(), flowNo);
+        }
+    }
+
+    /**
      * 添加库存
      *
      * @param skuNo
      * @param numsOpt
-     * @param orderNo
+     * @param flowNo
      * @return
      */
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public ShopStockEntity addStock(String skuNo, Integer numsOpt, String orderNo) {
+    public ShopStockEntity addStock(String skuNo, Integer numsOpt, String flowNo) {
         ShopStockEntity shopStockEntity = shopStockDao.queryBySkuNo(skuNo);
         String stockNo = shopStockEntity == null ? null : shopStockEntity.getStockNo();
         if (shopStockEntity == null) {
@@ -92,11 +111,28 @@ public class ShopStockServiceImpl implements ShopStockService {
             shopStockDetailEntity.setSkuNo(skuNo);
             shopStockDetailEntity.setNumOpt(numsOpt);
             shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_ADD.getOptType());
-            shopStockDetailEntity.setOrderNo(orderNo);
+            shopStockDetailEntity.setFlowNo(flowNo);
             shopStockDetailDao.addStockDetail(shopStockDetailEntity);
             return shopStockDao.queryBySkuNo(skuNo);
         }
-        throw new RuntimeException("添加库存,失败,orderNo=" + orderNo);
+        throw new RuntimeException("添加库存,失败,flowNo=" + flowNo);
+    }
+
+    /**
+     * 批量冻结库存
+     *
+     * @param shopStockLockDtoList
+     * @param flowNo
+     * @return : java.util.List<com.sara.stock.entity.ShopStockEntity>
+     * @author: hujunsong
+     * @date: 2023/3/30 23:14
+     */
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void batchLockStock(List<ShopStockOptDetailDto> shopStockLockDtoList, String flowNo) {
+        for (int i = 0; i < shopStockLockDtoList.size(); i++) {
+            this.lockStock(shopStockLockDtoList.get(i).getSkuNo(), shopStockLockDtoList.get(i).getNums(), flowNo);
+        }
     }
 
     /**
@@ -104,11 +140,12 @@ public class ShopStockServiceImpl implements ShopStockService {
      *
      * @param skuNo
      * @param numsOpt
-     * @param orderNo
+     * @param flowNo
      * @return
      */
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public ShopStockEntity lockStock(String skuNo, Integer numsOpt, String orderNo) {
+    public ShopStockEntity lockStock(String skuNo, Integer numsOpt, String flowNo) {
         ShopStockEntity shopStockEntity = shopStockDao.queryBySkuNo(skuNo);
         if (shopStockEntity == null) {
             throw new RuntimeException("冻结库存,库存信息不存在,skuNo=" + skuNo);
@@ -124,11 +161,28 @@ public class ShopStockServiceImpl implements ShopStockService {
             shopStockDetailEntity.setSkuNo(skuNo);
             shopStockDetailEntity.setNumOpt(numsOpt);
             shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_LOCK.getOptType());
-            shopStockDetailEntity.setOrderNo(orderNo);
+            shopStockDetailEntity.setFlowNo(flowNo);
             shopStockDetailDao.addStockDetail(shopStockDetailEntity);
             return shopStockDao.queryBySkuNo(skuNo);
         }
-        throw new RuntimeException("冻结库存,失败,orderNo=" + orderNo);
+        throw new RuntimeException("冻结库存,失败,flowNo=" + flowNo);
+    }
+
+    /**
+     * 批量解冻库存
+     *
+     * @param shopStockLockDtoList
+     * @param flowNo
+     * @return : void
+     * @author: hujunsong
+     * @date: 2023/3/31 08:43
+     */
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void batchUnlockStock(List<ShopStockOptDetailDto> shopStockLockDtoList, String flowNo) {
+        for (int i = 0; i < shopStockLockDtoList.size(); i++) {
+            this.unlockStock(shopStockLockDtoList.get(i).getSkuNo(), shopStockLockDtoList.get(i).getNums(), flowNo);
+        }
     }
 
     /**
@@ -136,11 +190,12 @@ public class ShopStockServiceImpl implements ShopStockService {
      *
      * @param skuNo
      * @param numsOpt
-     * @param orderNo
+     * @param flowNo
      * @return
      */
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public ShopStockEntity unlockStock(String skuNo, Integer numsOpt, String orderNo) {
+    public ShopStockEntity unlockStock(String skuNo, Integer numsOpt, String flowNo) {
         ShopStockEntity shopStockEntity = shopStockDao.queryBySkuNo(skuNo);
         if (shopStockEntity == null) {
             throw new RuntimeException("解冻库存,库存信息不存在,skuNo=" + skuNo);
@@ -156,11 +211,28 @@ public class ShopStockServiceImpl implements ShopStockService {
             shopStockDetailEntity.setSkuNo(skuNo);
             shopStockDetailEntity.setNumOpt(numsOpt);
             shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_UNLOCK.getOptType());
-            shopStockDetailEntity.setOrderNo(orderNo);
+            shopStockDetailEntity.setFlowNo(flowNo);
             shopStockDetailDao.addStockDetail(shopStockDetailEntity);
             return shopStockDao.queryBySkuNo(skuNo);
         }
-        throw new RuntimeException("解冻库存,失败,orderNo=" + orderNo);
+        throw new RuntimeException("解冻库存,失败,flowNo=" + flowNo);
+    }
+
+    /**
+     * 批量减少库存
+     *
+     * @param shopStockLockDtoList
+     * @param flowNo
+     * @return : void
+     * @author: hujunsong
+     * @date: 2023/3/31 08:43
+     */
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void batchReduceStock(List<ShopStockOptDetailDto> shopStockLockDtoList, String flowNo) {
+        for (int i = 0; i < shopStockLockDtoList.size(); i++) {
+            this.reduceStock(shopStockLockDtoList.get(i).getSkuNo(), shopStockLockDtoList.get(i).getNums(), flowNo);
+        }
     }
 
     /**
@@ -168,11 +240,12 @@ public class ShopStockServiceImpl implements ShopStockService {
      *
      * @param skuNo
      * @param numsOpt
-     * @param orderNo
+     * @param flowNo
      * @return
      */
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public ShopStockEntity reduceStock(String skuNo, Integer numsOpt, String orderNo) {
+    public ShopStockEntity reduceStock(String skuNo, Integer numsOpt, String flowNo) {
         ShopStockEntity shopStockEntity = shopStockDao.queryBySkuNo(skuNo);
         if (shopStockEntity == null) {
             throw new RuntimeException("减少库存,库存信息不存在,skuNo=" + skuNo);
@@ -188,10 +261,10 @@ public class ShopStockServiceImpl implements ShopStockService {
             shopStockDetailEntity.setSkuNo(skuNo);
             shopStockDetailEntity.setNumOpt(numsOpt);
             shopStockDetailEntity.setOptType(STOCK_OPT_TYPE_REDUCE.getOptType());
-            shopStockDetailEntity.setOrderNo(orderNo);
+            shopStockDetailEntity.setFlowNo(flowNo);
             shopStockDetailDao.addStockDetail(shopStockDetailEntity);
             return shopStockDao.queryBySkuNo(skuNo);
         }
-        throw new RuntimeException("减少库存,失败,orderNo=" + orderNo);
+        throw new RuntimeException("减少库存,失败,flowNo=" + flowNo);
     }
 }

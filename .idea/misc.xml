@@ -18,6 +18,8 @@
         <option value="$PROJECT_DIR$/5000_SaraUtils/pom.xml" />
         <option value="$PROJECT_DIR$/5000_SaraTools/pom.xml" />
         <option value="$PROJECT_DIR$/0000_SaraTools/pom.xml" />
+        <option value="$PROJECT_DIR$/5000_ShopGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/5100_ShopGateway/pom.xml" />
       </list>
     </option>
   </component>

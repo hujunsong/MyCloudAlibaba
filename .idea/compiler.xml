@@ -14,11 +14,12 @@
         <module name="5800_StockCenter" />
         <module name="5700_OrderApi" />
         <module name="5800_StockApi" />
-        <module name="5500_ShopGateway" />
+        <module name="5100_ShopGateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="0000_SaraTools" target="8" />
+      <module name="5100_ShopGateway" target="1.8" />
       <module name="5500_ShopGateway" target="1.8" />
       <module name="5600_AccountApi" target="8" />
       <module name="5600_AccountCenter" target="1.8" />
@@ -35,6 +36,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="0000_SaraTools" options="-parameters" />
+      <module name="5100_ShopGateway" options="-parameters" />
       <module name="5500_ShopGateway" options="-parameters" />
       <module name="5600_AccountCenter" options="-parameters" />
       <module name="5700_OrderCenter" options="-parameters" />

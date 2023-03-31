@@ -38,7 +38,7 @@ public class ShopStockDetailEntity implements Serializable {
     /**
      * 订单号
      */
-    private String orderNo;
+    private String flowNo;
     /**
      * 创建时间
      */
@@ -105,12 +105,12 @@ public class ShopStockDetailEntity implements Serializable {
         this.optType = optType;
     }
 
-    public String getOrderNo() {
-        return orderNo;
+    public String getFlowNo() {
+        return flowNo;
     }
 
-    public void setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
+    public void setFlowNo(String flowNo) {
+        this.flowNo = flowNo;
     }
 
     public Date getDateCreate() {

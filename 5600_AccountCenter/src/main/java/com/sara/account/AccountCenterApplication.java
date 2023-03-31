@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-@MapperScan("com.seven.account.dao")
+@MapperScan("com.sara.account.dao")
 @ComponentScan(basePackages = {"com.sara"})
 public class AccountCenterApplication {
 

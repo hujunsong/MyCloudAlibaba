@@ -7,7 +7,7 @@ spring:
     username: root
     password: root123
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/saraShop?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/sara_shop_stock?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     mybatis-plus:
       mapperLocations: classpath:mapper/**/*.xml  #数据访问层.xml文件路径
   cloud:
@@ -45,3 +45,14 @@ feign:
         connectTimeout: 2000
         #数据读取超时是时间
         readTimeout: 5000
+seata:
+  registry:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+  service:
+    vgroup-mapping:
+      default_tx_group: default
+    grouplist:
+      default: 127.0.0.1:8091 #seata服务端地址

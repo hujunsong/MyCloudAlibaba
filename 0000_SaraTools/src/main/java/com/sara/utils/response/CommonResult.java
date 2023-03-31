@@ -27,6 +27,26 @@ public class CommonResult<T> implements Serializable {
      */
     private T data;
 
+    public boolean isSuccess() {
+        return SUCCESS_CODE.equals(this.getCode());
+    }
+
+    public CommonResult<T> success() {
+        return this.setCode(SUCCESS_CODE).setSmg(SUCCESS_MSG);
+    }
+
+    public CommonResult<T> success(String msg) {
+        return this.setCode(SUCCESS_CODE).setSmg(msg);
+    }
+
+    public CommonResult<T> success(String code, String msg) {
+        return this.setCode(code).setSmg(msg);
+    }
+
+    public CommonResult<T> success(String code, String msg, T t) {
+        return this.setCode(code).setSmg(msg).setData(t);
+    }
+
     public CommonResult<T> success(T t) {
         return this.setCode(SUCCESS_CODE).setSmg(SUCCESS_MSG).setData(t);
     }
@@ -35,12 +55,12 @@ public class CommonResult<T> implements Serializable {
         return this.setCode(FAIL_CODE).setSmg(FAIL_MSG);
     }
 
-    public CommonResult<T> fail(String code, String msg) {
-        return this.setCode(code).setSmg(msg);
-    }
-
     public CommonResult<T> fail(String msg) {
         return this.setCode(FAIL_CODE).setSmg(msg);
+    }
+
+    public CommonResult<T> fail(String code, String msg) {
+        return this.setCode(code).setSmg(msg);
     }
 
     public CommonResult<T> fail(String code, String msg, T t) {

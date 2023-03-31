@@ -9,7 +9,7 @@
         <result property="skuNo" column="sku_no" jdbcType="VARCHAR"/>
         <result property="numOpt" column="num_opt" jdbcType="INTEGER"/>
         <result property="optType" column="opt_type" jdbcType="VARCHAR"/>
-        <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+        <result property="flowNo" column="flow_no" jdbcType="VARCHAR"/>
         <result property="dateCreate" column="date_create" jdbcType="TIMESTAMP"/>
         <result property="dateUpdate" column="date_update" jdbcType="TIMESTAMP"/>
         <result property="creator" column="creator" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
         sku_no,
         num_opt,
         opt_type,
-        order_no,
+        flow_no,
         date_create,
         date_update,
         creator,
@@ -41,8 +41,8 @@
 
     <!--新增所有列-->
     <insert id="addStockDetail" keyProperty="id" useGeneratedKeys="true">
-        insert into shop_stock_detail(id, stock_detail_no, stock_no, sku_no, num_opt, opt_type, order_no)
-        values (#{id}, #{stockDetailNo}, #{stockNo}, #{skuNo}, #{numOpt}, #{optType}, #{orderNo})
+        insert into shop_stock_detail(id, stock_detail_no, stock_no, sku_no, num_opt, opt_type, flow_no)
+        values (#{id}, #{stockDetailNo}, #{stockNo}, #{skuNo}, #{numOpt}, #{optType}, #{flowNo})
     </insert>
 </mapper>
 

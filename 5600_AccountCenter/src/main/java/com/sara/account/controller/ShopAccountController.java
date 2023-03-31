@@ -2,6 +2,7 @@ package com.sara.account.controller;
 
 import com.sara.account.dto.ShopAccountDto;
 import com.sara.account.entity.ShopAccountEntity;
+import com.sara.account.func.AccountInterface;
 import com.sara.account.service.ShopAccountService;
 import com.sara.account.utils.PojoConverter;
 import com.sara.utils.response.CommonResult;
@@ -18,7 +19,7 @@ import java.math.BigDecimal;
  * 账户接口
  */
 @RestController
-public class ShopAccountController {
+public class ShopAccountController implements AccountInterface {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -33,6 +34,7 @@ public class ShopAccountController {
      * @author: hujunsong
      * @date: 2023/3/29 16:47
      */
+    @Override
     @ResponseBody
     @PostMapping("/account/create")
     public CommonResult<ShopAccountDto> createAccount(String userNo) {
@@ -54,6 +56,7 @@ public class ShopAccountController {
      * @author: hujunsong
      * @date: 2023/3/29 16:49
      */
+    @Override
     @ResponseBody
     @PostMapping("/account/add")
     public CommonResult<ShopAccountDto> addAmount(String userNo, BigDecimal amount, String orderNo) {
@@ -73,6 +76,7 @@ public class ShopAccountController {
      * @param orderNo 订单号
      * @return
      */
+    @Override
     @ResponseBody
     @PostMapping("/account/lock")
     public CommonResult<ShopAccountDto> lockAmount(String userNo, BigDecimal amount, String orderNo) {
@@ -94,6 +98,7 @@ public class ShopAccountController {
      * @author: hujunsong
      * @date: 2023/3/29 16:50
      */
+    @Override
     @ResponseBody
     @PostMapping("/account/unlock")
     public CommonResult<ShopAccountDto> unlockAmount(String userNo, BigDecimal amount, String orderNo) {
@@ -115,6 +120,7 @@ public class ShopAccountController {
      * @author: hujunsong
      * @date: 2023/3/29 16:50
      */
+    @Override
     @ResponseBody
     @PostMapping("/account/reduce")
     public CommonResult<ShopAccountDto> reduceAmount(String userNo, BigDecimal amount, String orderNo) {

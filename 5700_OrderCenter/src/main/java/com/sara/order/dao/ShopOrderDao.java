@@ -1,7 +1,9 @@
 package com.sara.order.dao;
 
-import com.sara.order.entity.ShopOrder;
+import com.sara.order.entity.ShopOrderEntity;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 订单表(ShopOrder)表数据库访问层
@@ -17,7 +19,15 @@ public interface ShopOrderDao {
      * @param orderNo
      * @return 实例对象
      */
-    ShopOrder queryByOrderNo(@Param("orderNo") String orderNo);
+    ShopOrderEntity queryByOrderNo(@Param("orderNo") String orderNo);
+
+    /**
+     * 查询用户订单
+     *
+     * @param userNo
+     * @return 实例对象
+     */
+    List<ShopOrderEntity> queryByUserNo(@Param("userNo") String userNo);
 
     /**
      * 新增数据
@@ -25,6 +35,6 @@ public interface ShopOrderDao {
      * @param shopOrder 实例对象
      * @return 影响行数
      */
-    int insert(ShopOrder shopOrder);
+    int insert(ShopOrderEntity shopOrder);
 }
 

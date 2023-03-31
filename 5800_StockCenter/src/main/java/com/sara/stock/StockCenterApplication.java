@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-@MapperScan("com.seven.stock.dao")
+@MapperScan("com.sara.stock.dao")
 @ComponentScan(basePackages = {"com.sara"})
 public class StockCenterApplication {
 

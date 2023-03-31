@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sara.order.dao.ShopOrderLineDao">
 
-    <resultMap type="com.sara.order.entity.ShopOrderLine" id="ShopOrderLineMap">
+    <resultMap type="com.sara.order.entity.ShopOrderLineEntity" id="ShopOrderLineMap">
         <result property="id" column="id" jdbcType="BIGINT"/>
         <result property="orderLineNo" column="order_line_no" jdbcType="VARCHAR"/>
         <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>

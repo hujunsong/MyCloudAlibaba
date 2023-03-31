@@ -1,6 +1,6 @@
 package com.sara.order.dao;
 
-import com.sara.order.entity.ShopOrderLine;
+import com.sara.order.entity.ShopOrderLineEntity;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,9 +17,9 @@ public interface ShopOrderLineDao {
      * @param orderNo
      * @return
      */
-    List<ShopOrderLine> listByOrderNo(@Param("orderNo") String orderNo);
+    List<ShopOrderLineEntity> listByOrderNo(@Param("orderNo") String orderNo);
 
-    ShopOrderLine queryByOrderLineNo(@Param("orderLineNo") String orderLineNo);
+    ShopOrderLineEntity queryByOrderLineNo(@Param("orderLineNo") String orderLineNo);
 
     /**
      * 新增数据
@@ -27,7 +27,7 @@ public interface ShopOrderLineDao {
      * @param shopOrderLine 实例对象
      * @return 影响行数
      */
-    int insert(ShopOrderLine shopOrderLine);
+    int insert(ShopOrderLineEntity shopOrderLine);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
@@ -35,6 +35,6 @@ public interface ShopOrderLineDao {
      * @param entities List<ShopOrderLine> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<ShopOrderLine> entities);
+    int insertBatch(@Param("entities") List<ShopOrderLineEntity> entities);
 }
 
