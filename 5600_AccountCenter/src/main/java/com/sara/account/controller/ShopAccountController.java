@@ -40,7 +40,7 @@ public class ShopAccountController implements AccountInterface {
     @Override
     @ResponseBody
     @PostMapping("/account/create")
-    public CommonResult<ShopAccountDto> createAccount(@RequestParam @NotBlank String userNo) {
+    public CommonResult<ShopAccountDto> createAccount(@RequestParam("userNo") @NotBlank String userNo) {
         try {
             ShopAccountEntity shopAccountEntity = shopAccountService.createAccount(userNo);
             return new CommonResult<ShopAccountDto>().success(PojoConverter.ShopAccountEntity2Dto(shopAccountEntity));
@@ -62,9 +62,9 @@ public class ShopAccountController implements AccountInterface {
     @Override
     @ResponseBody
     @PostMapping("/account/add")
-    public CommonResult<ShopAccountDto> addAmount(@RequestParam @NotBlank String userNo,
-                                                  @RequestParam @Digits(integer = 6, fraction = 2) BigDecimal amount,
-                                                  @RequestParam @NotBlank String orderNo) {
+    public CommonResult<ShopAccountDto> addAmount(@RequestParam("userNo") @NotBlank String userNo,
+                                                  @RequestParam("amount") @Digits(integer = 6, fraction = 2) BigDecimal amount,
+                                                  @RequestParam("orderNo") @NotBlank String orderNo) {
         try {
             ShopAccountEntity shopAccountEntity = shopAccountService.addAmount(userNo, amount, orderNo);
             return new CommonResult<ShopAccountDto>().success(PojoConverter.ShopAccountEntity2Dto(shopAccountEntity));
@@ -84,9 +84,9 @@ public class ShopAccountController implements AccountInterface {
     @Override
     @ResponseBody
     @PostMapping("/account/lock")
-    public CommonResult<ShopAccountDto> lockAmount(@RequestParam @NotBlank String userNo,
-                                                   @RequestParam @Digits(integer = 6, fraction = 2) BigDecimal amount,
-                                                   @RequestParam @NotBlank String orderNo) {
+    public CommonResult<ShopAccountDto> lockAmount(@RequestParam("userNo") @NotBlank String userNo,
+                                                   @RequestParam("amount") @Digits(integer = 6, fraction = 2) BigDecimal amount,
+                                                   @RequestParam("orderNo") @NotBlank String orderNo) {
         try {
             ShopAccountEntity shopAccountEntity = shopAccountService.lockAmount(userNo, amount, orderNo);
             return new CommonResult<ShopAccountDto>().success(PojoConverter.ShopAccountEntity2Dto(shopAccountEntity));
@@ -108,9 +108,9 @@ public class ShopAccountController implements AccountInterface {
     @Override
     @ResponseBody
     @PostMapping("/account/unlock")
-    public CommonResult<ShopAccountDto> unlockAmount(@RequestParam @NotBlank String userNo,
-                                                     @RequestParam @Digits(integer = 6, fraction = 2) BigDecimal amount,
-                                                     @RequestParam @NotBlank String orderNo) {
+    public CommonResult<ShopAccountDto> unlockAmount(@RequestParam("userNo") @NotBlank String userNo,
+                                                     @RequestParam("amount") @Digits(integer = 6, fraction = 2) BigDecimal amount,
+                                                     @RequestParam("orderNo") @NotBlank String orderNo) {
         try {
             ShopAccountEntity shopAccountEntity = shopAccountService.unlockAmount(userNo, amount, orderNo);
             return new CommonResult<ShopAccountDto>().success(PojoConverter.ShopAccountEntity2Dto(shopAccountEntity));
@@ -132,9 +132,9 @@ public class ShopAccountController implements AccountInterface {
     @Override
     @ResponseBody
     @PostMapping("/account/reduce")
-    public CommonResult<ShopAccountDto> reduceAmount(@RequestParam @NotBlank String userNo,
-                                                     @RequestParam @Digits(integer = 6, fraction = 2) BigDecimal amount,
-                                                     @RequestParam @NotBlank String orderNo) {
+    public CommonResult<ShopAccountDto> reduceAmount(@RequestParam("userNo") @NotBlank String userNo,
+                                                     @RequestParam("amount") @Digits(integer = 6, fraction = 2) BigDecimal amount,
+                                                     @RequestParam("orderNo") @NotBlank String orderNo) {
         try {
             ShopAccountEntity shopAccountEntity = shopAccountService.reduceAmount(userNo, amount, orderNo);
             return new CommonResult<ShopAccountDto>().success(PojoConverter.ShopAccountEntity2Dto(shopAccountEntity));

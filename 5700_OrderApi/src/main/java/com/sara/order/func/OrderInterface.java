@@ -21,17 +21,6 @@ import java.util.List;
 public interface OrderInterface {
 
     /**
-     * 下单
-     *
-     * @param shopOrderApplyDto 下单对象
-     * @return : com.sara.utils.response.CommonResult<com.sara.order.dto.ShopOrderDto>
-     * @author: hujunsong
-     * @date: 2023/3/29 18:55
-     */
-    @PostMapping("/order/apply")
-    CommonResult<ShopOrderDto> applyOrder(@RequestBody @Valid ShopOrderApplyDto shopOrderApplyDto);
-
-    /**
      * 根据订单号查询
      *
      * @param orderNo 订单号
@@ -40,7 +29,7 @@ public interface OrderInterface {
      * @date: 2023/3/29 19:01
      */
     @PostMapping("/order/queryByOrderNo")
-    CommonResult<ShopOrderDto> queryByOrderNo(@RequestParam @NotBlank String orderNo);
+    CommonResult<ShopOrderDto> queryByOrderNo(@RequestParam("orderNo") @NotBlank String orderNo);
 
     /**
      * 根据用户号查询
@@ -51,5 +40,16 @@ public interface OrderInterface {
      * @date: 2023/3/29 19:02
      */
     @PostMapping("/order/queryByUserNo")
-    CommonResult<List<ShopOrderDto>> queryByUserNo(@RequestParam @NotBlank String userNo);
+    CommonResult<List<ShopOrderDto>> queryByUserNo(@RequestParam("userNo") @NotBlank String userNo);
+
+    /**
+     * 下单
+     *
+     * @param shopOrderApplyDto 下单对象
+     * @return : com.sara.utils.response.CommonResult<com.sara.order.dto.ShopOrderDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 18:55
+     */
+    @PostMapping("/order/apply")
+    CommonResult<ShopOrderDto> applyOrder(@RequestBody @Valid ShopOrderApplyDto shopOrderApplyDto);
 }

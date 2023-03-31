@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/0000_SaraTools/0000_SaraTools.iml" filepath="$PROJECT_DIR$/0000_SaraTools/0000_SaraTools.iml" />
-      <module fileurl="file://$PROJECT_DIR$/5000_ShopGateway/5100_ShopGateway.iml" filepath="$PROJECT_DIR$/5000_ShopGateway/5100_ShopGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5100_ShopGateway/5100_ShopGateway.iml" filepath="$PROJECT_DIR$/5100_ShopGateway/5100_ShopGateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/5600_AccountApi/5600_AccountApi.iml" filepath="$PROJECT_DIR$/5600_AccountApi/5600_AccountApi.iml" />
       <module fileurl="file://$PROJECT_DIR$/5600_AccountCenter/5600_AccountCenter.iml" filepath="$PROJECT_DIR$/5600_AccountCenter/5600_AccountCenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/5700_OrderApi/5700_OrderApi.iml" filepath="$PROJECT_DIR$/5700_OrderApi/5700_OrderApi.iml" />

@@ -40,7 +40,7 @@ public class StockController implements StockInterface {
     @Override
     @ResponseBody
     @PostMapping("/stock/create")
-    public CommonResult<ShopStockDto> createStock(@RequestParam @NotBlank String skuNo) {
+    public CommonResult<ShopStockDto> createStock(@RequestParam("skuNo") @NotBlank String skuNo) {
         try {
             ShopStockEntity shopStockEntity = shopStockService.createStock(skuNo);
             return new CommonResult<ShopStockDto>()
@@ -61,7 +61,7 @@ public class StockController implements StockInterface {
     @Override
     @ResponseBody
     @PostMapping("/stock/get")
-    public CommonResult<ShopStockDto> getStock(@RequestParam @NotBlank String skuNo) {
+    public CommonResult<ShopStockDto> getStock(@RequestParam("skuNo") @NotBlank String skuNo) {
         try {
             ShopStockEntity shopStockEntity = shopStockService.queryBySkuNo(skuNo);
             return new CommonResult<ShopStockDto>().success(PojoConverter.ShopStockEntity2Dto(shopStockEntity));

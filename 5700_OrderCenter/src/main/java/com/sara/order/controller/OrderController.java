@@ -31,28 +31,6 @@ public class OrderController implements OrderInterface {
     private ShopOrderService shopOrderService;
 
     /**
-     * 下单
-     *
-     * @param shopOrderApplyDto 下单对象
-     * @return : com.sara.utils.response.CommonResult<com.sara.order.dto.ShopOrderDto>
-     * @author: hujunsong
-     * @date: 2023/3/29 18:55
-     */
-    @Override
-    @ResponseBody
-    @PostMapping("/order/apply")
-    public CommonResult<ShopOrderDto> applyOrder(@RequestBody @Valid ShopOrderApplyDto shopOrderApplyDto) {
-        logger.info("下单请求参数,shopOrderApplyDto={}", shopOrderApplyDto);
-        try {
-            ShopOrderEntity shopOrderEntity = shopOrderService.applyOrder(shopOrderApplyDto);
-            return new CommonResult<ShopOrderDto>().success(PojoConvertor.shopOrderEntity2Dto(shopOrderEntity));
-        } catch (Exception exception) {
-            logger.error("下单异常,shopOrderApplyDto={}", shopOrderApplyDto, exception);
-            return new CommonResult<ShopOrderDto>().fail();
-        }
-    }
-
-    /**
      * 根据订单号查询
      *
      * @param orderNo 订单号
@@ -63,7 +41,7 @@ public class OrderController implements OrderInterface {
     @Override
     @ResponseBody
     @PostMapping("/order/queryByOrderNo")
-    public CommonResult<ShopOrderDto> queryByOrderNo(@RequestParam @NotBlank String orderNo) {
+    public CommonResult<ShopOrderDto> queryByOrderNo(@RequestParam("orderNo") @NotBlank String orderNo) {
         try {
             ShopOrderEntity shopOrderEntity = shopOrderService.queryByOrderNo(orderNo);
             return new CommonResult<ShopOrderDto>().success(PojoConvertor.shopOrderEntity2Dto(shopOrderEntity));
@@ -83,7 +61,7 @@ public class OrderController implements OrderInterface {
     @Override
     @ResponseBody
     @PostMapping("/order/queryByUserNo")
-    public CommonResult<List<ShopOrderDto>> queryByUserNo(@RequestParam @NotBlank String userNo) {
+    public CommonResult<List<ShopOrderDto>> queryByUserNo(@RequestParam("userNo") @NotBlank String userNo) {
         try {
             List<ShopOrderEntity> shopOrderEntityList = shopOrderService.queryByUserNo(userNo);
 
@@ -91,6 +69,28 @@ public class OrderController implements OrderInterface {
                     PojoConvertor.shopOrderEntityList2Dto(shopOrderEntityList));
         } catch (Exception exception) {
             return new CommonResult<List<ShopOrderDto>>().fail(exception.getMessage());
+        }
+    }
+
+    /**
+     * 下单
+     *
+     * @param shopOrderApplyDto 下单对象
+     * @return : com.sara.utils.response.CommonResult<com.sara.order.dto.ShopOrderDto>
+     * @author: hujunsong
+     * @date: 2023/3/29 18:55
+     */
+    @Override
+    @ResponseBody
+    @PostMapping("/order/apply")
+    public CommonResult<ShopOrderDto> applyOrder(@RequestBody @Valid ShopOrderApplyDto shopOrderApplyDto) {
+        logger.info("下单请求参数,shopOrderApplyDto={}", shopOrderApplyDto);
+        try {
+            ShopOrderEntity shopOrderEntity = shopOrderService.applyOrder(shopOrderApplyDto);
+            return new CommonResult<ShopOrderDto>().success(PojoConvertor.shopOrderEntity2Dto(shopOrderEntity));
+        } catch (Exception exception) {
+            logger.error("下单异常,shopOrderApplyDto={}", shopOrderApplyDto, exception);
+            return new CommonResult<ShopOrderDto>().fail();
         }
     }
 }

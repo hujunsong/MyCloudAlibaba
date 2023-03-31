@@ -27,7 +27,7 @@ public interface StockInterface {
      * @date: 2023/3/31 10:22
      */
     @PostMapping("/stock/create")
-    CommonResult<ShopStockDto> createStock(@RequestParam @NotBlank String skuNo);
+    CommonResult<ShopStockDto> createStock(@RequestParam("skuNo") @NotBlank String skuNo);
 
     /**
      * 查询库存
@@ -38,7 +38,7 @@ public interface StockInterface {
      * @date: 2023/3/31 08:58
      */
     @PostMapping("/stock/get")
-    CommonResult<ShopStockDto> getStock(@RequestParam @NotBlank String skuNo);
+    CommonResult<ShopStockDto> getStock(@RequestParam("skuNo") @NotBlank String skuNo);
 
     /**
      * 增加库存
