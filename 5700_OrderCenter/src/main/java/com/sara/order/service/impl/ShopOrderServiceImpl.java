@@ -98,7 +98,7 @@ public class ShopOrderServiceImpl implements ShopOrderService {
             shopOrderLineEntity.setQuantity(shopOrderApplyLineDtoList.get(i).getQuantity());
             shopOrderLineEntity.setPrice(shopOrderApplyLineDtoList.get(i).getPrice());
             shopOrderLineEntity.setAmountPayable(shopOrderApplyLineDtoList.get(i).getAmountPayable());
-//            shopOrderLineEntity.setAmountActual();
+            shopOrderLineEntity.setAmountActual(BigDecimal.ZERO);
             shopOrderLineEntity.setAmountDiscount(shopOrderApplyLineDtoList.get(i).getAmountDiscount());
 //            shopOrderLineEntity.setDateCreate();
 //            shopOrderLineEntity.setDateUpdate();
@@ -128,8 +128,8 @@ public class ShopOrderServiceImpl implements ShopOrderService {
         shopOrderEntity.setOrderNo(orderNo);
         shopOrderEntity.setUserNo(shopOrderApplyDto.getUserNo());
         shopOrderEntity.setOrderStatus(OrderStatusEnum.apply_unpaid.getCode());
+        shopOrderEntity.setAmountActual(BigDecimal.ZERO);
         shopOrderEntity.setAmountPayable(totalAmountPayable);
-//        shopOrderEntity.setAmountActual();
         shopOrderEntity.setAmountDiscount(totalAmountDiscount);
 //        shopOrderEntity.setDatePaid();
 //        shopOrderEntity.setDateShipped();

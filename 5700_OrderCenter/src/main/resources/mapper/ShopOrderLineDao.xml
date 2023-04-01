@@ -65,13 +65,12 @@
 
     <insert id="insertBatch">
         insert into shop_order_line(id,order_line_no, order_no, user_no, sku_no, sku_name, quantity, price,
-        amount_payable,
-        amount_actual, amount_discount, date_create, date_update, creator, updater)
+        amount_payable,amount_actual, amount_discount)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.id},#{entity.orderLineNo}, #{entity.orderNo}, #{entity.userNo}, #{entity.skuNo},
             #{entity.skuName},#{entity.quantity}, #{entity.price}, #{entity.amountPayable}, #{entity.amountActual},
-            #{entity.amountDiscount}, #{entity.dateCreate}, #{entity.dateUpdate}, #{entity.creator}, #{entity.updater})
+            #{entity.amountDiscount})
         </foreach>
     </insert>
 </mapper>
