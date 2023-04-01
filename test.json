@@ -1,0 +1,28 @@
+######## 增加库存
+{
+  "flowNo": "stockflow01",
+  "shopStockOptDetailDtoList": [
+    {
+      "skuNo":"sku01",
+      "nums":10
+    }
+  ]
+}
+
+####### 下单
+{
+  "userNo": "user01",
+  "amountPayable": 100.00,
+  "amountDiscount": 100.00,
+  "shopOrderLineDtoList": [
+    {
+      "skuNo":"sku01",
+      "skuName":"测试商品",
+      "quantity":1,
+      "price": 100.00,
+      "amountPayable":100.00,
+      "amountDiscount":100.00
+    }
+  ]
+}
+
