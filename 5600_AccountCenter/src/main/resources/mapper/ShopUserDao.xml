@@ -121,9 +121,9 @@
 
     <!--新增所有列-->
     <insert id="insert">
-        insert into shop_user(user_no, user_name, actual_name, sex, id_no, phone, email,
+        insert into shop_user(id, user_no, user_name, actual_name, sex, id_no, phone, email,
                               login_password, pay_password)
-        values (#{userNo}, #{userName}, #{actualName}, #{sex}, #{idNo}, #{phone}, #{email},
+        values (#{id}, #{userNo}, #{userName}, #{actualName}, #{sex}, #{idNo}, #{phone}, #{email},
                 #{loginPassword}, #{payPassword})
     </insert>
 
