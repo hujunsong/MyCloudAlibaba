@@ -72,18 +72,19 @@ public class ShopUserServiceImpl implements ShopUserService {
             return new CommonResult<String>().fail().setMsg("邮箱已注册！");
         }
         // 生成验证码
-        String code = String.valueOf((int) (Math.random() * 9 + 1) * Math.pow(10, 5));
+        String verifyCode = String.valueOf((int) (Math.random() * 900000 + 100000));
         // redis缓存
         RegisterRedisCacheDomain registerRedisCacheDomain = new RegisterRedisCacheDomain();
         registerRedisCacheDomain.setEmail(registerCodeSendDto.getEmail());
-        registerRedisCacheDomain.setCode(code);
+        registerRedisCacheDomain.setCode(verifyCode);
         registerRedisCacheDomain.setRegisterCodeSendDto(registerCodeSendDto);
 
-        boolean redisResult = redisTemplate.opsForValue().setIfAbsent(registerCodeSendDto.getRegisterCodeRedisKey(), new ObjectMapper().writeValueAsString(registerRedisCacheDomain), 5, TimeUnit.MINUTES);
+        boolean redisResult = redisTemplate.opsForValue().setIfAbsent(registerCodeSendDto.getRegisterCodeRedisKey(),
+                new ObjectMapper().writeValueAsString(registerRedisCacheDomain), 5, TimeUnit.MINUTES);
 
         if (!redisResult) {
             logger.error("用户注册，缓存验证码失败,registerCodeSendDto={}", registerCodeSendDto);
-            return new CommonResult<String>().success().setData("缓存验证码失败" + registerCodeSendDto.getEmail());
+            return new CommonResult<String>().fail().setData("缓存验证码失败" + registerCodeSendDto.getEmail());
         }
         // 发送短信
         mqProducerService.sendRocket(REGISTER_EMAIL_MQ_TOPIC_TAG, registerRedisCacheDomain);
