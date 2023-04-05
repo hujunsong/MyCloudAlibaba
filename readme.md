@@ -16,7 +16,7 @@ service: 业务处理
 # Skywalking接入
 ```
 # -javaagent后面是skywalking-agent.jar的路径
--javaagent:/usr/local/skywalking/skywalking-agent/skywalking-agent.jar
+-javaagent:/usr/local/skywalking/skywalking-agent/skywalking-agent.jar -DSW_AGENT_NAME=demo-client -DSW_AGENT_COLLECTOR_BACKEND_SERVICES=127.0.0.1:11800
 ```
 # Sentinel接入
 ```

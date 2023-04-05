@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!-- 引入springboot默认的logback.xml -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
-    <property name="LOG_HOME" value="/Users/hujunsong/logs/MyCloudAlibaba/AccountCenter" />
+    <property name="LOG_HOME" value="/Users/hujunsong/logs/MyCloudAlibaba/AccountCenter"/>
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>-->
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
     <!-- 按照每天生成日志文件 -->
@@ -20,7 +24,8 @@
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>-->
+            <pattern>${FILE_LOG_PATTERN}}</pattern>
         </encoder>
         <!--日志文件最大的大小 -->
         <triggeringPolicy
@@ -29,21 +34,21 @@
         </triggeringPolicy>
     </appender>
 
-    <logger name="com.sara" level="debug" />
-    <logger name="org.springframework" level="INFO" />
-    <logger name="com.alibaba.druid" level="INFO" />
+    <logger name="com.sara" level="debug"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="com.alibaba.druid" level="INFO"/>
 
     <!--myibatis log configure -->
-    <logger name="org.apache.ibatis" level="debug" />
-    <logger name="java.sql.Connection" level="INFO" />
-    <logger name="java.sql.Statement" level="INFO" />
-    <logger name="java.sql.PreparedStatement" level="INFO" />
+    <logger name="org.apache.ibatis" level="debug"/>
+    <logger name="java.sql.Connection" level="INFO"/>
+    <logger name="java.sql.Statement" level="INFO"/>
+    <logger name="java.sql.PreparedStatement" level="INFO"/>
     <logger name="log4j.logger.net" level="ERROR"/>
     <logger name="log4j.logger.net.spy.memcached.transcoders.SerializingTranscoder" level="ERROR"/>
 
     <!-- 日志输出级别 -->
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
     </root>
 </configuration>
