@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: OrderCenter
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        file-extension: yml
+        namespace: SaraShop-dev-namespace
+        group: OrderCenter_GROUP
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        namespace: SaraShop-dev-namespace
+        group: SaraShop-group
+seata:
+  registry:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      namespace: SaraShop-dev-namespace
+      group: SaraShop-group

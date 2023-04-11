@@ -1,0 +1,20 @@
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: ShopGateway
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        file-extension: yml
+        namespace: SaraShop-dev-namespace
+        group: ShopGateway_GROUP
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        namespace: SaraShop-dev-namespace
+        group: SaraShop-group
