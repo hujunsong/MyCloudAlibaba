@@ -1,86 +1,77 @@
+server:
+  port: 5600
 spring:
   application:
     name: AccountCenter
-  shardingsphere:
-    props:
-      sql:
-        show: true
-    datasource:
-      names: datasource-x,datasource-0,datasource-1
-      datasource-x:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://127.0.0.1:3306/sara_shop_account?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-        username: root
-        password: root123
-      datasource-0:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://127.0.0.1:3306/sara_shop_account_0?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-        username: root
-        password: root123
-      datasource-1:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://127.0.0.1:3306/sara_shop_account_1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-        username: root
-        password: root123
-    sharding:
-      default-data-source-name: datasource-x
-      #这里是个sharding官方文档一个坑，只配置了default-data-source-name，对于不设置分片的表，会走全路由(比如插入t_user，会向每个库都插入)，而我们的要求只是不分片的表路由到默认数据源
-      binding-table-groups: shop_user
-      binding-tables: shop_user
-      default-database-strategy:
-        none:
-      tables:
-        shop_account:
-          actual-data-nodes: datasource-$->{0..1}.shop_account_$->{0..1}
-          database-strategy:
-            standard:
-              sharding-column: user_no
-              precise-algorithm-class-name: com.sara.utils.consistentHash.DatabaseConsistentShardingAlgorithm
-          table-strategy:
-            standard:
-              sharding-column: account_no
-              precise-algorithm-class-name: com.sara.utils.consistentHash.TableConsistentShardingAlgorithm
-        shop_account_detail:
-          actual-data-nodes: datasource-$->{0..1}.shop_account_detail_$->{0..3}
-          database-strategy:
-            standard:
-              sharding-column: user_no
-              precise-algorithm-class-name: com.sara.utils.consistentHash.DatabaseConsistentShardingAlgorithm
-          table-strategy:
-            standard:
-              sharding-column: account_no
-              precise-algorithm-class-name: com.sara.utils.consistentHash.TableConsistentShardingAlgorithm
-      bindingTables:
-        - shop_account,shop_account_detail
+  # datasource:
+  #   username: root
+  #   password: root123
+  #   driverClassName: com.mysql.cj.jdbc.Driver
+  #   url: jdbc:mysql://127.0.0.1:3306/sara_shop_account?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+  #   mybatis-plus:
+  #     mapperLocations: classpath:mapper/**/*.xml  #数据访问层.xml文件路径
   cloud:
-    nacos:
-      config:
-        server-addr: 127.0.0.1:8848
-        username: nacos
-        password: nacos
-        file-extension: yml
-        namespace: SaraShop-dev-namespace
-        group: AccountCenter_GROUP
-      discovery:
-        server-addr: 127.0.0.1:8848
-        username: nacos
-        password: nacos
-        namespace: SaraShop-dev-namespace
-        group: SaraShop-group
-mybatis-plus:
-  mapper-locations: classpath:mapper/**/*.xml
+    sentinel:
+      eager: true
+      transport:
+        dashboard: 127.0.0.1:9091
+      #配置限流之后的响应内容
+      scg:
+        fallback:
+          # 两种模式：一种是response返回文字提示信息，一种是redirect，重定向跳转，需要同时配置redirect(跳转的uri)
+          mode: response
+          #mode: redirect
+          # 响应的状态
+          response-status: 426
+          # 响应体
+          response-body: '{"code": 426,"message": "限流了，稍后重试！"}'
+          ## 跳转的URL
+          #redirect: http://www.baidu.com
+  redis:
+    database: 0  # Redis数据库索引（默认为0）
+    host: 127.0.0.1 # Redis服务器地址
+    port: 6379  # Redis服务器连接端口
+    password:   # Redis服务器连接密码（默认为空）
+    lettuce:
+      pool:
+        max-active: 8  # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-wait: -1   # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-idle: 8    # 连接池中的最大空闲连接 默认 8
+        min-idle: 0    # 连接池中的最小空闲连接 默认 0
+  mail:
+    host: "smtp.163.com" # 发件服务器地址,不同邮件平台地址不同
+    port: 25 #常用邮件端口25、109、110、143、465、995、993、994 如果开启了SSL安全则使用对应的端口号，25为非加密端口号
+    username: m18611715735@163.com #发送邮件的账号
+    password: NXSNZGOGJKEPYYPF #发送邮件账号的授权码,这里的授权码不是验证码.需要到邮箱
+    default-encoding: utf-8 #设置编码
+    properties: # 设置邮件超时时间防止服务器阻塞
+      timeout: 5000
+      connection-timeout: 5000
+      write-timeout: 5000
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5 #类型
+    prefix: classpath:/templates/ #模板存放的位置
+    suffix: .html #模板的后缀
+feign:
+  client:
+    config:
+      default:
+        #连接超时时间
+        connectTimeout: 2000
+        #数据读取超时是时间
+        readTimeout: 5000
+        #feign日志
+        loggerLevel: FULL
 seata:
-  registry:
-    nacos:
-      server-addr: 127.0.0.1:8848
-      username: nacos
-      password: nacos
-      namespace: SaraShop-dev-namespace
-      group: SaraShop-group
-management:
-  health:
-    db:
-      enabled: false
+  service:
+    vgroup-mapping:
+      default_tx_group: default
+    grouplist:
+      default: 127.0.0.1:8091 #seata服务端地址
+rocketmq:
+  # nameserver地址
+  nameServer: 127.0.0.1:9876
+  producer:
+    # 生产者 必须填写 group
+    group: sara_shop_producer_group
