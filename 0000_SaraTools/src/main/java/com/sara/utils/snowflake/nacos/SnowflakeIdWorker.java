@@ -78,6 +78,12 @@ public class SnowflakeIdWorker {
      */
     private long datacenterId;
 
+    /**
+     * https://blog.csdn.net/fengyuyeguirenenen/article/details/126986466
+     * 如果并发量不高，别说毫秒，连秒内并发都少，所以序列基本上都是0，那生成的 ID 基本就都是偶数了。
+     */
+    private byte sequenceOffset;
+
     public long getWorkerId() {
         return workerId;
     }
@@ -136,7 +142,11 @@ public class SnowflakeIdWorker {
             }
 
         } else {
-            sequence = 0;
+            // 时间戳改变，毫秒内序列重置，防止并发小的时候，生成的id总是偶数
+            vibrateSequenceOffset();
+            sequence = sequenceOffset;
+            // 并发小的时候，这样生成的id总是偶数
+            //sequence = 0;
         }
         // 这儿记录一下最近一次生成id的时间戳，单位是毫秒
         lastTimestamp = timestamp;
@@ -146,6 +156,11 @@ public class SnowflakeIdWorker {
         return ((timestamp - twepoch) << timestampLeftShift) |
                 (datacenterId << datacenterIdShift) |
                 (workerId << workerIdShift) | sequence;
+    }
+
+    // 这个方法总是返回 0 或者 1
+    private void vibrateSequenceOffset() {
+        sequenceOffset = (byte) (~sequenceOffset & 1);
     }
 
     /**
@@ -178,17 +193,27 @@ public class SnowflakeIdWorker {
         SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(1, 1);
 
         //Common Thread Pool
-        ExecutorService pool = new ThreadPoolExecutor(5, 200,
-                0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>(1024), new ThreadPoolExecutor.AbortPolicy());
+//        ExecutorService pool = new ThreadPoolExecutor(5, 200,
+//                0L, TimeUnit.MILLISECONDS,
+//                new LinkedBlockingQueue<Runnable>(1024), new ThreadPoolExecutor.AbortPolicy());
+//
+//        for (int t = 0; t < 5; t++) {
+//            pool.execute(() -> {
+//                for (int i = 0; i < 1000; i++) {
+//                    System.out.println(Thread.currentThread().getName() + " " + snowflakeIdWorker.nextId());
+//                }
+//            });
+//        }
+//        pool.shutdown();
 
-        for (int t = 0; t < 5; t++) {
-            pool.execute(() -> {
-                for (int i = 0; i < 1000; i++) {
-                    System.out.println(Thread.currentThread().getName() + " " + snowflakeIdWorker.nextId());
-                }
-            });
+        // 低并发下的奇偶性测试
+        for (int i = 0; i < 30; i++) {
+            System.out.println(snowflakeIdWorker.nextId());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        pool.shutdown();
     }
 }

@@ -1,6 +1,60 @@
 spring:
   application:
     name: AccountCenter
+  shardingsphere:
+    props:
+      sql:
+        show: true
+    datasource:
+      names: datasource-x,datasource-0,datasource-1
+      datasource-x:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/sara_shop_account?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: root123
+      datasource-0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/sara_shop_account_0?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: root123
+      datasource-1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/sara_shop_account_1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: root123
+    sharding:
+      default-data-source-name: datasource-x
+      #这里是个sharding官方文档一个坑，只配置了default-data-source-name，对于不设置分片的表，会走全路由(比如插入t_user，会向每个库都插入)，而我们的要求只是不分片的表路由到默认数据源
+      binding-table-groups: shop_user
+      binding-tables: shop_user
+      default-database-strategy:
+        none:
+      tables:
+        shop_account:
+          actual-data-nodes: datasource-$->{0..1}.shop_account_$->{0..1}
+          database-strategy:
+            standard:
+              sharding-column: user_no
+              precise-algorithm-class-name: com.sara.utils.consistentHash.DatabaseConsistentShardingAlgorithm
+          table-strategy:
+            standard:
+              sharding-column: account_no
+              precise-algorithm-class-name: com.sara.utils.consistentHash.TableConsistentShardingAlgorithm
+        shop_account_detail:
+          actual-data-nodes: datasource-$->{0..1}.shop_account_detail_$->{0..3}
+          database-strategy:
+            standard:
+              sharding-column: user_no
+              precise-algorithm-class-name: com.sara.utils.consistentHash.DatabaseConsistentShardingAlgorithm
+          table-strategy:
+            standard:
+              sharding-column: account_no
+              precise-algorithm-class-name: com.sara.utils.consistentHash.TableConsistentShardingAlgorithm
+      bindingTables:
+        - shop_account,shop_account_detail
   cloud:
     nacos:
       config:
@@ -16,6 +70,8 @@ spring:
         password: nacos
         namespace: SaraShop-dev-namespace
         group: SaraShop-group
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
 seata:
   registry:
     nacos:
@@ -24,3 +80,7 @@ seata:
       password: nacos
       namespace: SaraShop-dev-namespace
       group: SaraShop-group
+management:
+  health:
+    db:
+      enabled: false
